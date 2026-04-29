@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="application-name" content="Krone Spiel" />
+  <meta
+    name="description"
+    content="Krone Spiel: Krone fangen im Browser – 2 bis 4 Spieler, Hindernisse, Roboter, lokales oder Online-Spiel. Kostenlos im Chrome oder anderen Browser spielen."
+  />
+  <meta
+    name="keywords"
+    content="Krone Spiel, Krone fangen, Browser-Spiel, Party-Spiel, Multiplayer, kostenlos"
+  />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0f1419" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Krone Spiel – Krone fangen" />
+  <meta
+    property="og:description"
+    content="Einer trägt die Krone, alle jagen. Hindernisse, schnelle Runden, lokal oder mit Freunden online."
+  />
+  <meta property="og:locale" content="de_DE" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Krone Spiel" />
+  <meta name="twitter:description" content="Browser-Spiel Krone fangen – kostenlos spielen." />
+  <title>Krone Spiel – Krone fangen (Browser-Spiel)</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="search" type="application/opensearchdescription+xml" href="opensearch.xml" title="Krone Spiel" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    "name": "Krone Spiel",
+    "description": "Krone fangen im Browser mit Hindernissen, zwei bis vier Spielern, optional mit Computer-Gegnern oder online.",
+    "genre": ["Party game", "Action game"],
+    "playMode": ["MultiPlayer", "SinglePlayer"],
+    "gamePlatform": "Web Browser",
+    "inLanguage": "de",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+</head>
+<body>
+  <div id="menu" class="screen">
+    <h1>Krone Spiel</h1>
+    <p class="tagline">
+      Einer trägt die Krone und rennt weg. Wer sie berührt, bekommt sie.
+      Steine blockieren den Weg. Am Ende gewinnt, wer die Krone hat.
+    </p>
+    <div class="menu-row">
+      <label for="game-mode">Spielart</label>
+      <select id="game-mode">
+        <option value="local" selected>Lokal (ein Computer)</option>
+        <option value="online">Online (andere Computer)</option>
+      </select>
+    </div>
+    <div class="menu-row">
+      <label for="duration">Spieldauer</label>
+      <select id="duration">
+        <option value="90">1:30 – schnell</option>
+        <option value="120" selected>2:00 – Standard</option>
+        <option value="180">3:00</option>
+      </select>
+    </div>
+    <div id="panel-local">
+      <div class="menu-row">
+        <label for="total">Wie viele Personen?</label>
+        <select id="total">
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4" selected>4</option>
+        </select>
+      </div>
+      <div class="menu-row menu-checkbox">
+        <label class="checkbox-label" for="use-bots">
+          <input type="checkbox" id="use-bots" checked />
+          Mit Roboter (Computer-Gegner)
+        </label>
+      </div>
+      <div class="menu-row" id="row-humans">
+        <label for="humans">Echte Spieler an der Tastatur</label>
+        <select id="humans">
+          <option value="1">1</option>
+          <option value="2" selected>2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+      </div>
+      <p id="hint-humans-only" class="menu-hint hidden">
+        Alle Plätze sind Menschen – jeder braucht eine Tastenreihe (siehe unten).
+      </p>
+    </div>
+    <div id="panel-online" class="hidden">
+      <p class="menu-hint online-hint">
+        Der Host startet auf seinem PC:
+        <code>python3 server/krone_server.py</code>
+        Dann hier die Adresse eintragen (z. B. <code>ws://192.168.1.5:8770</code>).
+        Alle öffnen dieselbe Webseite und wählen Online – bis zu 4 Spieler.
+      </p>
+      <div class="menu-row">
+        <label for="ws-url">Server (WebSocket)</label>
+        <input type="text" id="ws-url" class="input-url" placeholder="ws://127.0.0.1:8770" spellcheck="false" />
+      </div>
+    </div>
+    <p class="controls-hint">
+      Steuerung: Spieler 1 <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> ·
+      Spieler 2 Pfeiltasten · Spieler 3 <kbd>I</kbd><kbd>J</kbd><kbd>K</kbd><kbd>L</kbd> ·
+      Spieler 4 <kbd>T</kbd><kbd>F</kbd><kbd>G</kbd><kbd>H</kbd>
+    </p>
+    <button type="button" id="btn-start" class="btn primary">Spiel starten</button>
+  </div>
+
+  <div id="hud" class="hud hidden">
+    <div class="hud-timer" id="timer">2:00</div>
+    <div class="hud-crown" id="crown-hud">Krone: —</div>
+  </div>
+
+  <div id="overlay" class="overlay hidden">
+    <div class="overlay-card">
+      <h2 id="overlay-title">Spielende</h2>
+      <p id="overlay-msg"></p>
+      <button type="button" id="btn-again" class="btn primary">Nochmal</button>
+    </div>
+  </div>
+
+  <canvas id="game" width="960" height="540"></canvas>
+
+  <script src="js/game.js" defer></script>
+</body>
+</html>

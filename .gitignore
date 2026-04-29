@@ -1,0 +1,5 @@
+.krone-spiel-server.pid
+.korone-spiel-server.pid
+*.pid
+__pycache__/
+*.pyc

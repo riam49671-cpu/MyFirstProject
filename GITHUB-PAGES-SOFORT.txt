@@ -1,0 +1,54 @@
+So bekommst du eine echte Internet-Adresse (GitHub Pages)
+============================================================
+
+Ich kann das Hochladen nicht für dich klicken – du musst einmal eingeloggt sein.
+Danach ist das Spiel unter einer festen https-Adresse erreichbar.
+
+Schritt 1 – GitHub-Konto
+------------------------
+Falls noch keins: https://github.com/signup
+
+Schritt 2 – Neues Repository
+------------------------------
+1. https://github.com/new
+2. Name z. B. krone-spiel
+3. Öffentlich (Public) wählen → Repository erstellen
+
+Schritt 3 – Projekt hochladen (mit Git im Projektordner)
+--------------------------------------------------------
+Im Terminal im Ordner FirstMariaProject:
+
+  git branch -M main
+  git add .
+  git commit -m "Krone Spiel"
+  git remote add origin https://github.com/DEIN-USERNAME/krone-spiel.git
+  git push -u origin main
+
+(DEIN-USERNAME und Repo-Name anpassen.)
+
+Schritt 4 – Pages einschalten
+------------------------------
+1. Auf GitHub: dein Repo öffnen
+2. Settings → Pages (links)
+3. Unter „Build and deployment“: Source = **GitHub Actions**
+
+Schritt 5 – Warten
+------------------
+Tab „Actions“: wenn der Workflow grün ist, ist die Seite live.
+
+Deine Adresse ist dann etwa:
+
+  https://DEIN-USERNAME.github.io/krone-spiel/
+
+(Genau so steht sie auch unter Settings → Pages.)
+
+Schritt 6 – Google (optional)
+------------------------------
+1. In sitemap.xml die Zeile <loc> auf GENAU diese URL setzen (mit / am Ende).
+2. In robots.txt eine Zeile einfügen:
+   Sitemap: https://DEIN-USERNAME.github.io/krone-spiel/sitemap.xml
+3. https://search.google.com/search-console → Property hinzufügen → Sitemap einreichen.
+
+Hinweis: Der Python-WebSocket-Server läuft auf GitHub Pages nicht – nur das Spiel
+im Browser (lokal am Gerät). Online-Mehrspieler wie zu Hause geht weiter nur mit
+eigenem Server.

@@ -1,0 +1,5 @@
+# Nach dem Hochladen: optional eine Zeile hinzufügen (echte https-URL):
+# Sitemap: https://deine-domain.de/sitemap.xml
+
+User-agent: *
+Allow: /

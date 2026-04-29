@@ -1,0 +1,36 @@
+Krone Spiel bei Google findbar machen
+======================================
+
+Google listet nur Seiten, die ÖFFENTLICH im Internet liegen – nicht nur auf
+deinem PC. Kurz die Schritte:
+
+1) Seite ins Internet stellen (kostenlos möglich)
+   - GitHub: Projekt hochladen → Repository → Settings → Pages → Branch
+     „main“, Ordner „/ (root)“. Die Adresse wird etwa:
+     https://DEIN-NAME.github.io/DEIN-REPO/
+   - Oder: Netlify / Cloudflare Pages – Ordner hochladen, Domain notieren.
+
+2) Platzhalter in diesem Projekt ersetzen
+   - In sitemap.xml: <loc> auf deine echte https-Adresse setzen (mit / am Ende).
+   - In robots.txt: Zeile „Sitemap:“ auf dieselbe Domain + /sitemap.xml.
+
+3) Google informieren
+   - https://search.google.com/search-console
+   - „URL-Präfix“ mit deiner https-Adresse hinzufügen (z. B.
+     https://dein-name.github.io/dein-repo/)
+   - „Sitemap“ einreichen: …/sitemap.xml
+
+4) Geduld
+   - Erste Einträge oft nach einigen Tagen, nicht sofort.
+
+Wichtig
+-------
+- Der Online-WebSocket-Server (python3 server/krone_server.py) läuft nicht auf
+  GitHub Pages. Öffentlich gehostet = meist nur „lokal“ am gleichen Gerät oder
+  ZIP für Freunde; echtes Online-Spiel über mehrere PCs braucht einen eigenen
+  Server mit WebSocket (Hosting mit Root oder VPS).
+
+Suchwort
+--------
+Im Projekt heißt das Spiel überall „Krone Spiel“ – so kann es gefunden werden,
+wenn Google die Seite kennt und du ein bisschen einzigartige Texte hast.

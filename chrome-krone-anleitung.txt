@@ -1,0 +1,63 @@
+Krone Spiel – in Chrome mit „krone spiel“ starten
+==================================================
+
+Voraussetzung: Einmal das Skript ausführen, damit der Server läuft und du die
+Seite geladen hast:
+
+  ./krone-spiel.sh
+
+(Der kleine Webserver nutzt nur deinen Rechner: http://127.0.0.1:8765/)
+
+
+A) Kurzbefehl „krone spiel“ in der Adresszeile (empfohlen)
+---------------------------------------------------------
+1. Chrome öffnen → Drei Punkte → Einstellungen → Suchmaschine →
+   „Suchmaschine verwalten und zur Suchmaschinenliste hinzufügen“.
+
+2. „Suchmaschine hinzufügen“:
+   - Suchmaschine: Krone Spiel
+   - Kurzbefehl: krone spiel
+     (Ein Wort geht auch: krone)
+   - URL mit %s an Stelle der Abfrage:
+     http://127.0.0.1:8765/index.html?q=%s
+
+3. Speichern. Danach in die Adresszeile tippen:
+     krone spiel
+   Taste Tab drücken, Enter → Spiel öffnet sich (Server muss laufen).
+
+
+B) Über OpenSearch (nach erstem Besuch mit krone-spiel.sh)
+-----------------------------------------------------------
+Wenn die Seite unter http://127.0.0.1:8765/ geöffnet war, kann Chrome
+„Krone Spiel“ bei den Suchmaschinen anbieten – unter Suchmaschinen nach
+„Krone Spiel“ suchen und hinzufügen.
+
+
+Wichtig: Damit die Adresse erreichbar ist, vor dem Spiel kurz
+./krone-spiel.sh ausführen (startet den Server, falls er noch nicht läuft).
+
+Wenn du vorher „Korone Spiel“ eingetragen hattest: Eintrag löschen und mit
+„Krone Spiel“ / „krone spiel“ neu anlegen.
+
+
+C) Bruder oder Freunde auf einem anderen Computer
+--------------------------------------------------
+Ja – jeder darf spielen. Zwei einfache Wege:
+
+  1) Ordner kopieren: Den ganzen Projektordner (USB, Cloud, ZIP) auf den
+     anderen PC legen – dort Chrome öffnen und index.html nutzen oder
+     ./krone-spiel.sh ausführen.
+
+  2) Gleiches WLAN zu Hause: Auf DEINEM Rechner ./krone-spiel-lan.sh starten.
+     Es werden Adressen wie http://192.168.x.x:8765/index.html angezeigt.
+     Diese URL auf dem anderen Gerät im Browser öffnen (Handy/Laptop des Bruders).
+     Nur im vertrauenswürdigen Heimnetz verwenden.
+
+Gemeinsame Partie auf mehreren Rechnern (NEU):
+  pip install -r requirements.txt
+  Host startet:  python3 server/krone_server.py
+  Alle öffnen die gleiche Webseite und wählen „Online (andere Computer)“,
+  WebSocket z. B. ws://192.168.x.x:8770
+
+Ohne Online-Server spielt jeder für sich lokal (wie oben mit kopiertem Ordner
+oder krone-spiel-lan.sh nur zum Laden der Seite).
