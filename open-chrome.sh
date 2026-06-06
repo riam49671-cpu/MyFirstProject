@@ -15,6 +15,9 @@ if [ "$FILE" = "gesichts-studio.html" ] || [ "$FILE" = "simon-says.html" ] || [ 
   if [ "$FILE" = "kamera-app.html" ] && [ -x "$DIR/sofort-kamera-app.sh" ]; then
     exec "$DIR/sofort-kamera-app.sh"
   fi
+  if [ "$FILE" = "lego-spiel.html" ] && [ -x "$DIR/sofort-lego-spiel.sh" ]; then
+    exec "$DIR/sofort-lego-spiel.sh"
+  fi
 fi
 URL="file://${DIR}/${FILE}"
 

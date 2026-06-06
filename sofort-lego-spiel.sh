@@ -1,25 +1,43 @@
 #!/usr/bin/env bash
-# Lego-Bauplatz als eigenes Fenster (Chrome App-Modus).
+# Lego-Stapel — lokaler Server + Chrome (Flatpak kann kein file:// aus dem Ordner).
 set -e
-ROOT="$(cd "$(dirname "$0")" && pwd)"
-URL="file://${ROOT}/lego-spiel.html"
+PORT=8774
+DIR="$(cd "$(dirname "$0")" && pwd)"
+cd "$DIR"
 
-echo "Lego-Bauplatz startet …" >&2
+port_open() {
+  timeout 0.12 bash -c "echo >/dev/tcp/127.0.0.1/$PORT" 2>/dev/null
+}
 
-for chrome in google-chrome-stable google-chrome; do
-  if command -v "$chrome" >/dev/null 2>&1; then
-    exec "$chrome" --app="$URL"
+open_chrome() {
+  local url="$1"
+  if command -v flatpak >/dev/null 2>&1 && flatpak info com.google.Chrome >/dev/null 2>&1; then
+    exec flatpak run com.google.Chrome --app="$url"
   fi
-done
-if command -v chromium >/dev/null 2>&1; then
-  exec chromium --app="$URL"
-fi
-if command -v chromium-browser >/dev/null 2>&1; then
-  exec chromium-browser --app="$URL"
-fi
-if command -v flatpak >/dev/null 2>&1 && flatpak info com.google.Chrome >/dev/null 2>&1; then
-  exec flatpak run com.google.Chrome --app="$URL"
+  for chrome in google-chrome-stable google-chrome; do
+    if command -v "$chrome" >/dev/null 2>&1; then
+      exec "$chrome" --app="$url"
+    fi
+  done
+  if command -v chromium >/dev/null 2>&1; then
+    exec chromium --app="$url"
+  fi
+  if command -v chromium-browser >/dev/null 2>&1; then
+    exec chromium-browser --app="$url"
+  fi
+  echo "Chrome nicht gefunden. Öffne im Browser: $url" >&2
+  xdg-open "$url" 2>/dev/null || true
+}
+
+if ! port_open; then
+  python3 -m http.server "$PORT" --bind 127.0.0.1 >/dev/null 2>&1 &
+  echo $! >"$DIR/.lego-spiel-server.pid"
+  for _ in $(seq 1 40); do
+    port_open && break
+    sleep 0.05
+  done
 fi
 
-echo "Chrome nicht gefunden. URL: $URL" >&2
-xdg-open "$URL" 2>/dev/null || true
+echo "Lego-Stapel startet …" >&2
+URL="http://127.0.0.1:$PORT/lego-spiel.html"
+open_chrome "$URL"

@@ -1,0 +1,51 @@
+So nutzen ANDERE PERSONEN Lego-Stapel auf ihrem Computer
+=======================================================
+
+Dein Projekt auf GitHub:
+  https://github.com/riam49671-cpu/MyFirstProject
+
+Im Browser spielen (überall — Windows, Mac, Linux, Handy):
+  https://riam49671-cpu.github.io/MyFirstProject/lego-spiel.html
+
+  Kein Install nötig — Link teilen oder Lesezeichen setzen.
+
+
+Auf Linux im Anwendungsmenü (wie bei dir)
+------------------------------------------
+
+1) Git installieren (falls noch nicht da):
+     sudo apt install git
+
+2) Projekt holen:
+     git clone https://github.com/riam49671-cpu/MyFirstProject.git
+     cd MyFirstProject
+
+3) Einmal installieren:
+     chmod +x install-auf-anderem-computer.sh
+     ./install-auf-anderem-computer.sh
+
+4) Im Menü nach „Lego-Stapel“ suchen und starten.
+
+   Chrome oder Chromium sollte installiert sein (Flatpak-Chrome geht auch).
+
+
+Updates holen (später)
+----------------------
+     cd MyFirstProject
+     git pull
+     ./applikationen-aktualisieren.sh
+
+
+Für dich — Änderungen hochladen
+-------------------------------
+     git add .
+     git commit -m "Beschreibung"
+     git push
+
+Nach dem Push ist die Browser-Version nach 1–2 Minuten automatisch neu.
+
+
+GitHub Pages (einmalig, falls die Browser-URL noch nicht geht)
+----------------------------------------------------------------
+Auf github.com → MyFirstProject → Settings → Pages
+→ Source: GitHub Actions wählen und speichern.
