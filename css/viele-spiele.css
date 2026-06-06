@@ -1,0 +1,94 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #0f1419;
+  --panel: #1a2332;
+  --text: #e8eef5;
+  --muted: #8b9cb3;
+  --accent: #f4c430;
+  --link: #7dd3fc;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+}
+
+body {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 2.5rem;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+h1 {
+  margin: 0 0 0.5rem;
+  font-size: 2rem;
+  color: var(--accent);
+}
+
+.lead {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+h2 {
+  margin: 0 0 0.65rem;
+  font-size: 1.1rem;
+  color: var(--text);
+}
+
+section {
+  background: var(--panel);
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.spiele-liste {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.spiele-liste li {
+  margin: 0.35rem 0;
+}
+
+.spiele-liste-kompakt {
+  columns: 2;
+  column-gap: 1.5rem;
+}
+
+a {
+  color: var(--link);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+footer a {
+  font-weight: 500;
+}

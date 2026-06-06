@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
-  <ShortName>Krone Spiel</ShortName>
-  <Description>Krone fangen – lokales Browser-Spiel</Description>
+  <ShortName>Viele Spiele</ShortName>
+  <Description>Viele Spiele — kostenlose Browser-Spiele</Description>
   <InputEncoding>UTF-8</InputEncoding>
-  <Url type="text/html" template="http://127.0.0.1:8765/index.html?q={searchTerms}"/>
+  <Url type="text/html" template="https://riam49671-cpu.github.io/MyFirstProject/viele-spiele.html?q={searchTerms}"/>
 </OpenSearchDescription>

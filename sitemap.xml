@@ -1,98 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Nach dem Veröffentlichen: DEINE-ECHTE-URL überall gleich eintragen (https://...) -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://DEINE-ECHTE-URL-HIER/</loc>
+    <loc>https://riam49671-cpu.github.io/MyFirstProject/viele-spiele.html</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://DEINE-ECHTE-URL-HIER/krokodil.html</loc>
+    <loc>https://riam49671-cpu.github.io/MyFirstProject/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://riam49671-cpu.github.io/MyFirstProject/lego-spiel.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://riam49671-cpu.github.io/MyFirstProject/krokodil.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://DEINE-ECHTE-URL-HIER/snake.html</loc>
+    <loc>https://riam49671-cpu.github.io/MyFirstProject/snake.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://DEINE-ECHTE-URL-HIER/snake1p.html</loc>
+    <loc>https://riam49671-cpu.github.io/MyFirstProject/snake1p.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://DEINE-ECHTE-URL-HIER/runner.html</loc>
+    <loc>https://riam49671-cpu.github.io/MyFirstProject/runner.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://DEINE-ECHTE-URL-HIER/katze-wahl.html</loc>
+    <loc>https://riam49671-cpu.github.io/MyFirstProject/katze-wahl.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://DEINE-ECHTE-URL-HIER/runner2.html</loc>
+    <loc>https://riam49671-cpu.github.io/MyFirstProject/runner2.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://DEINE-ECHTE-URL-HIER/sternenhuepfer.html</loc>
+    <loc>https://riam49671-cpu.github.io/MyFirstProject/sternenhuepfer.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://DEINE-ECHTE-URL-HIER/offline-dino.html</loc>
+    <loc>https://riam49671-cpu.github.io/MyFirstProject/offline-dino.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://DEINE-ECHTE-URL-HIER/tetris.html</loc>
+    <loc>https://riam49671-cpu.github.io/MyFirstProject/tetris.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://DEINE-ECHTE-URL-HIER/buch-raten.html</loc>
+    <loc>https://riam49671-cpu.github.io/MyFirstProject/buch-raten.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://DEINE-ECHTE-URL-HIER/lumen-arena.html</loc>
+    <loc>https://riam49671-cpu.github.io/MyFirstProject/lumen-arena.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://DEINE-ECHTE-URL-HIER/kometen-korb.html</loc>
+    <loc>https://riam49671-cpu.github.io/MyFirstProject/kometen-korb.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://DEINE-ECHTE-URL-HIER/sekunden-split.html</loc>
+    <loc>https://riam49671-cpu.github.io/MyFirstProject/sekunden-split.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://DEINE-ECHTE-URL-HIER/wer-ist-was.html</loc>
+    <loc>https://riam49671-cpu.github.io/MyFirstProject/wer-ist-was.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://DEINE-ECHTE-URL-HIER/lernen-programieren.html</loc>
+    <loc>https://riam49671-cpu.github.io/MyFirstProject/lernen-programieren.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://DEINE-ECHTE-URL-HIER/simon-says.html</loc>
+    <loc>https://riam49671-cpu.github.io/MyFirstProject/simon-says.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://DEINE-ECHTE-URL-HIER/kamera-app.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://DEINE-ECHTE-URL-HIER/lego-spiel.html</loc>
+    <loc>https://riam49671-cpu.github.io/MyFirstProject/kamera-app.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

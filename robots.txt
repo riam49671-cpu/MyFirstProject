@@ -1,5 +1,4 @@
-# Nach dem Hochladen: optional eine Zeile hinzufügen (echte https-URL):
-# Sitemap: https://deine-domain.de/sitemap.xml
-
 User-agent: *
 Allow: /
+
+Sitemap: https://riam49671-cpu.github.io/MyFirstProject/sitemap.xml
