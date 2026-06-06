@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Schatz-Labyrinth: 2–4 Spieler, Münzen, Laden, Haustiere — lokales Browser-Spiel." />
+  <meta name="theme-color" content="#0c1018" />
+  <title>Schatz-Labyrinth — Münzen &amp; Laden</title>
+  <link rel="stylesheet" href="css/schatz-labyrinth.css" />
+</head>
+<body>
+  <header>
+    <h1>Schatz-Labyrinth</h1>
+    <p class="lead">
+      Zwei bis vier Spieler: ihr seid <strong>Menschen</strong> (von oben), sammelt Münzen, beim <strong>Laden</strong> kauft ihr Dinge — die sieht man sofort am Charakter.
+      <strong>Nur Felder mit ⛏️</strong> haben einen verborgenen Schatz; ohne Symbol kommt beim Graben nur Staub.
+      <strong>Jeder</strong> hat seine <strong>eigenen Lauf- und Grab-Tasten</strong>.       Mit dem <strong>Grab-Bagger</strong> im Laden grabt ihr pro Stufe mehr auf einmal.
+      Über dem Spielfeld könnt ihr <strong>Vollbild</strong> einschalten — so wird das Feld so groß wie der Monitor erlaubt (<kbd>Esc</kbd> zum Beenden).
+    </p>
+  </header>
+
+  <div class="lobby" id="lobby-panel">
+    <label>
+      Spieler:
+      <select id="player-count">
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4" selected>4</option>
+      </select>
+    </label>
+    <button type="button" id="btn-start" class="btn">Ins Labyrinth</button>
+    <span class="controls-hint">Steuerung unten · <kbd>B</kbd> Laden · Grab: eigene Taste pro Spieler</span>
+  </div>
+
+  <div class="hud-bar" style="display:flex;flex-wrap:wrap;align-items:center;gap:0.5rem;margin-bottom:0.45rem">
+    <div class="hud-players" id="hud-players" aria-live="polite" style="flex:1;min-width:12rem;margin-bottom:0"></div>
+    <button type="button" class="btn-fs-hud" id="btn-fullscreen" title="Spielfeld über den ganzen Bildschirm">⛶ Größer</button>
+    <button type="button" class="btn-shop-hud" id="btn-shop-hud" title="Laden">🛒 Laden <kbd>B</kbd></button>
+  </div>
+
+  <div class="wrap">
+    <canvas id="feld" width="1050" height="750" aria-label="Schatz-Labyrinth"></canvas>
+
+    <div id="shop-layer" class="ui-layer hidden">
+      <div class="card card-shop">
+        <h2>Kronen-Laden</h2>
+        <p class="shop-balance">Käufer wählen · Münzen: <strong id="shop-coins">0</strong> 🪙</p>
+        <div class="shop-tabs" id="shop-tabs"></div>
+        <ul class="shop-list" id="shop-list"></ul>
+        <button type="button" class="btn" id="btn-shop-close" style="width:100%;margin-top:0.5rem;">Weiter suchen</button>
+        <p class="controls-hint"><kbd>B</kbd> schließt auch · Tab <kbd>1</kbd>–<kbd>4</kbd> Käufer</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="controls-hint">
+    <strong>P1</strong> <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> · Grab <kbd>Leertaste</kbd> ·
+    <strong>P2</strong> Pfeile · Grab <kbd>Enter</kbd> ·
+    <strong>P3</strong> <kbd>I</kbd><kbd>J</kbd><kbd>K</kbd><kbd>L</kbd> · Grab <kbd>R</kbd> ·
+    <strong>P4</strong> <kbd>T</kbd><kbd>F</kbd><kbd>G</kbd><kbd>H</kbd> · Grab <kbd>.</kbd> · auch <kbd>,</kbd> / <kbd>/</kbd>
+    · <kbd>B</kbd> Laden · Schatz nur bei ⛏️ · ⛶ Größer = Vollbild (<kbd>Esc</kbd>)
+  </p>
+  <p class="links-bottom">
+    <a href="index.html">← Übersicht</a>
+  </p>
+
+  <script src="js/schatz-labyrinth.js" defer></script>
+</body>
+</html>

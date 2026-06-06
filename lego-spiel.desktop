@@ -1,0 +1,14 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Lego-Bauplatz
+GenericName=Lego bauen
+Comment=Frei mit Lego-Steinen bauen — Häuser, Türme, alles!
+Exec=/bin/bash "__PROJECT_DIR__/sofort-lego-spiel.sh"
+Path=__PROJECT_DIR__
+Icon=applications-games
+Terminal=false
+Categories=Game;KidsGame;
+Keywords=lego;spiel;bausteine;bauen;
+StartupNotify=true
+NoDisplay=false

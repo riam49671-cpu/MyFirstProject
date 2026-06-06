@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Kometen-Korb: Sternschnuppen fangen, Meteoriten meiden — Reaktion &amp; Combo, im Browser." />
+  <meta name="theme-color" content="#070b14" />
+  <title>Kometen-Korb – Sterne fangen</title>
+  <link rel="stylesheet" href="css/kometen-korb.css" />
+</head>
+<body>
+  <header>
+    <h1>Kometen-Korb</h1>
+    <p class="lead">
+      Ein kleines Spiel nur für diese Seite: vom Himmel fallen <strong>goldene Sternschnuppen</strong> und
+      <strong>graue Brocken</strong>. Fang die Sterne mit dem <strong>Korb</strong> — mehr Treffer hintereinander
+      erhöhen die <strong>Combo</strong> und die Punkte. Meteoriten kosten ein Leben.
+      <strong>Pfeile</strong> oder <strong>A / D</strong>, oder die <strong>Maus</strong> über dem Feld.
+    </p>
+  </header>
+
+  <div class="hud-row">
+    <span>Punkte <strong id="score">0</strong></span>
+    <span>Best <strong id="best">0</strong></span>
+    <span id="lives" aria-label="Leben">❤️❤️❤️</span>
+    <span class="combo" id="combo">—</span>
+  </div>
+
+  <div class="wrap">
+    <canvas id="spielfeld" width="720" height="480" tabindex="0" aria-label="Kometen-Korb Spielfeld"></canvas>
+
+    <div id="layer-menu" class="ui-layer">
+      <div class="card">
+        <h2>Kometen-Korb</h2>
+        <p>Sterne rein, Steine vermeiden. Start mit Button oder <kbd>Leertaste</kbd>.</p>
+        <button type="button" id="btn-start" class="btn">Los</button>
+      </div>
+    </div>
+
+    <div id="layer-over" class="ui-layer hidden">
+      <div class="card">
+        <h2>Runde vorbei</h2>
+        <p>Punkte: <strong id="final-score">0</strong></p>
+        <button type="button" id="btn-again" class="btn">Nochmal</button>
+      </div>
+    </div>
+  </div>
+
+  <p class="controls-hint">
+    <kbd>←</kbd><kbd>→</kbd> oder <kbd>A</kbd><kbd>D</kbd> · Maus · <kbd>Leertaste</kbd> Start
+  </p>
+  <p class="links-bottom">
+    <a href="index.html">← Übersicht</a>
+  </p>
+
+  <script src="js/kometen-korb.js" defer></script>
+</body>
+</html>

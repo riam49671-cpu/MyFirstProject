@@ -16,7 +16,7 @@ Schritt 2 – Neues Repository
 
 Schritt 3 – Projekt hochladen (mit Git im Projektordner)
 --------------------------------------------------------
-Im Terminal im Ordner FirstMariaProject:
+Im Terminal im Ordner MyFirstProject:
 
   git branch -M main
   git add .

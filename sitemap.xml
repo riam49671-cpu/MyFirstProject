@@ -1,9 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Nach dem Veröffentlichen: DEINE-ECHTE-URL eintragen (https://...) -->
+<!-- Nach dem Veröffentlichen: DEINE-ECHTE-URL überall gleich eintragen (https://...) -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://DEINE-ECHTE-URL-HIER/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://DEINE-ECHTE-URL-HIER/krokodil.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://DEINE-ECHTE-URL-HIER/snake.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://DEINE-ECHTE-URL-HIER/snake1p.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://DEINE-ECHTE-URL-HIER/runner.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://DEINE-ECHTE-URL-HIER/katze-wahl.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://DEINE-ECHTE-URL-HIER/runner2.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://DEINE-ECHTE-URL-HIER/sternenhuepfer.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://DEINE-ECHTE-URL-HIER/offline-dino.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://DEINE-ECHTE-URL-HIER/tetris.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://DEINE-ECHTE-URL-HIER/buch-raten.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://DEINE-ECHTE-URL-HIER/lumen-arena.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://DEINE-ECHTE-URL-HIER/kometen-korb.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://DEINE-ECHTE-URL-HIER/sekunden-split.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://DEINE-ECHTE-URL-HIER/wer-ist-was.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://DEINE-ECHTE-URL-HIER/lernen-programieren.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://DEINE-ECHTE-URL-HIER/simon-says.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://DEINE-ECHTE-URL-HIER/kamera-app.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://DEINE-ECHTE-URL-HIER/lego-spiel.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>

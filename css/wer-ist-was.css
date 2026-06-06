@@ -1,0 +1,245 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #0f1419;
+  --card: rgba(24, 32, 48, 0.92);
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --accent: #38bdf8;
+  --gold: #fcd34d;
+  --ok: #4ade80;
+  --bad: #f87171;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: radial-gradient(ellipse 100% 70% at 50% 0%, #1e3a5f 0%, var(--bg) 55%);
+  color: var(--text);
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+body {
+  padding: 0.75rem 1rem 1.5rem;
+  max-width: 26rem;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 1.45rem;
+  font-weight: 800;
+  margin: 0 0 0.35rem;
+  text-align: center;
+  background: linear-gradient(95deg, var(--gold), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.lead {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 0 0 1rem;
+  text-align: center;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.small {
+  font-size: 0.82rem;
+}
+
+.panel {
+  background: rgba(15, 23, 42, 0.65);
+  border-radius: 14px;
+  padding: 1rem;
+  border: 1px solid rgba(56, 189, 248, 0.15);
+}
+
+.panel.hidden {
+  display: none;
+}
+
+.panel-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.75rem 0;
+  font-size: 0.92rem;
+}
+
+select {
+  padding: 0.35rem 0.5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: rgba(30, 41, 59, 0.9);
+  color: var(--text);
+  font-family: inherit;
+}
+
+.hud-play {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.45rem 0.6rem;
+  background: rgba(15, 23, 42, 0.85);
+  border-radius: 10px;
+  font-size: 0.85rem;
+}
+
+.hud-play strong {
+  color: var(--gold);
+}
+
+.phase.hidden {
+  display: none;
+}
+
+.card-q {
+  background: var(--card);
+  border: 1px solid rgba(56, 189, 248, 0.22);
+  border-radius: 16px;
+  padding: 1.15rem 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+}
+
+.card-q .hint {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-bottom: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.card-secret {
+  border-color: rgba(252, 211, 77, 0.35);
+}
+
+.away-msg {
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.away-msg .who {
+  display: inline-block;
+  padding: 0.15rem 0.45rem;
+  border-radius: 8px;
+  margin: 0 0.15rem;
+}
+
+.secret-big {
+  font-size: 2.75rem;
+  font-weight: 900;
+  margin: 0.35rem 0 0;
+  line-height: 1.15;
+  word-break: break-word;
+  color: var(--gold);
+}
+
+.secret-big.emoji-only {
+  font-size: 4.5rem;
+  line-height: 1.2;
+}
+
+.guess-title {
+  font-size: 0.95rem;
+  margin: 0 0 0.65rem;
+  font-weight: 600;
+}
+
+.guess-input {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  border-radius: 12px;
+  border: 2px solid rgba(148, 163, 184, 0.4);
+  background: rgba(15, 23, 42, 0.9);
+  color: var(--text);
+  font-size: 1.05rem;
+  font-family: inherit;
+}
+
+.guess-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.result-msg {
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin: 0 0 0.5rem;
+}
+
+.result-msg.hit {
+  color: var(--ok);
+}
+
+.result-msg.miss {
+  color: var(--bad);
+}
+
+.btn-primary {
+  padding: 0.6rem 1.2rem;
+  border-radius: 10px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  background: linear-gradient(165deg, #38bdf8, #2563eb);
+  color: #041018;
+  font-size: 0.95rem;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.06);
+}
+
+.btn-primary.wide {
+  width: 100%;
+  margin-top: 0.35rem;
+}
+
+.links-bottom {
+  margin-top: 1.25rem;
+  text-align: center;
+}
+
+.links-bottom a {
+  color: var(--accent);
+}
+
+.controls-hint {
+  font-size: 0.82rem;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 0.75rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}

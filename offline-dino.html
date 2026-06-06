@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Offline-Rex: Spring über Hindernisse – wie das Chrome-Spiel ohne Netz, eigenständig und offline spielbar." />
+  <meta name="theme-color" content="#fafaf9" />
+  <title>Offline-Rex – Springen ohne Internet</title>
+  <link rel="stylesheet" href="css/offline-dino.css" />
+</head>
+<body>
+  <header>
+    <h1>Offline-Rex</h1>
+    <p>
+      Kleiner Endlos-Lauf für den Moment <strong>ohne Netz</strong> – es wird hell und dunkel;
+      in der <strong>Nacht</strong> keine Vögel, nach dem Morgen kommt <strong>wenigstens ein Vogel</strong>.
+      Sonst auch am Tag zufällig Vögel (tief: springen, hoch: normal laufen). Am Boden
+      <strong>Kakteen</strong>. <strong>Leertaste</strong> oder <strong>Pfeil hoch</strong> springen.
+      Wird mit der Zeit <strong>schneller</strong>. Rekord wird gespeichert.
+    </p>
+  </header>
+
+  <div class="wrap">
+    <div class="hud">
+      <span>Punkte <strong id="score">0</strong></span>
+      <span class="hud-mid">Best: <strong id="best">0</strong></span>
+      <button type="button" id="btn-mute" class="btn-mute" title="Ton aus/an" aria-pressed="false">🔊</button>
+    </div>
+    <canvas id="game" width="900" height="220" aria-label="Offline-Rex Spielfeld"></canvas>
+    <div id="menu" class="ui-layer interactive">
+      <div class="card">
+        <h2>Bereit?</h2>
+        <p>Start mit dem Button oder <kbd>Leertaste</kbd>.</p>
+        <button type="button" id="btn-start" class="btn">Los</button>
+      </div>
+    </div>
+    <div id="overlay" class="ui-layer interactive hidden">
+      <div class="card">
+        <h2>Game Over</h2>
+        <p id="over-msg">Punkte: 0</p>
+        <p id="hiscore" class="hud-mid"></p>
+        <button type="button" id="btn-again" class="btn">Nochmal</button>
+      </div>
+    </div>
+  </div>
+
+  <p class="od-links">
+    <a href="index.html">← Krone Spiel</a>
+    ·
+    <a href="sternenhuepfer.html">Sternenhüpfer</a>
+  </p>
+  <script src="js/offline-dino.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Simon Says with camera — English voice, multiplayer." />
+  <meta name="theme-color" content="#0f766e" />
+  <title>Simon Says – Camera Game</title>
+  <link rel="stylesheet" href="css/simon-says.css?v=8" />
+</head>
+<body>
+  <header>
+    <h1>Simon Says</h1>
+    <p class="lead">
+      The computer says what to do — <strong>English only</strong>.
+      Only move when you hear <strong>Simon says</strong>!
+      If Simon did <strong>NOT</strong> say — <strong>do NOT move</strong>!
+      <strong>Player 1 stands on the RIGHT</strong> in the camera.
+      Eyes &amp; bottom are forbidden.
+    </p>
+  </header>
+
+  <section class="setup" id="setup">
+    <h2>Players</h2>
+    <div class="player-count">
+      <label>Count:</label>
+      <button type="button" class="pc-btn" data-n="1">1</button>
+      <button type="button" class="pc-btn active" data-n="2">2</button>
+      <button type="button" class="pc-btn" data-n="3">3</button>
+      <button type="button" class="pc-btn" data-n="4">4</button>
+    </div>
+    <div id="name-fields" class="name-fields"></div>
+    <button type="button" id="btn-go" class="btn-primary">▶ Start game</button>
+  </section>
+
+  <section class="game hidden" id="game">
+    <div class="stage-wrap">
+      <video id="cam" playsinline muted class="cam-src"></video>
+      <canvas id="stage" width="640" height="480" aria-label="Camera"></canvas>
+      <p id="round-banner" class="round-banner" aria-live="polite"></p>
+    </div>
+
+    <div id="forbidden-rules" class="forbidden-rules hidden" aria-live="polite">
+      <p class="forbidden-title">⛔ NEVER touch:</p>
+      <p class="forbidden-list">👁️ <strong>Eyes</strong> · 🍑 <strong>Bottom</strong></p>
+    </div>
+
+    <div id="trap-box" class="trap-box hidden" aria-live="assertive">
+      <p class="trap-title">⛔ DO NOT DO IT!</p>
+      <p id="trap-forbidden" class="trap-forbidden"></p>
+    </div>
+
+    <p id="command-text" class="command-text" aria-live="assertive"></p>
+    <p id="command-de" class="command-de" aria-live="polite"></p>
+    <p id="status" class="status">Starting camera …</p>
+
+    <ul id="player-list" class="player-list"></ul>
+
+    <div class="game-actions">
+      <button type="button" id="btn-repeat" class="btn-primary">🔊 Say again</button>
+      <button type="button" id="btn-rules" class="btn-primary">⛔ Never touch</button>
+      <button type="button" id="btn-restart" class="btn-ghost">Restart</button>
+    </div>
+  </section>
+
+  <section id="winner-box" class="winner-box hidden" aria-live="polite">
+    <h2 id="winner-title"></h2>
+    <p id="winner-msg" class="muted"></p>
+  </section>
+
+  <p class="links-bottom">
+    <a href="index.html">← Home</a> ·
+    <code>./sofort-simon-says.sh</code>
+  </p>
+
+  <script type="module" src="js/simon-says.js?v=8"></script>
+</body>
+</html>

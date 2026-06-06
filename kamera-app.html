@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Kamera-App: Foto, Video, QR-Scan, Stop-Motion — Linux-App ohne Chrome." />
+  <meta name="theme-color" content="#0369a1" />
+  <title>Kamera-App – Foto, Video &amp; QR</title>
+  <link rel="stylesheet" href="css/kamera-app.css?v=4" />
+</head>
+<body>
+  <header>
+    <h1>Kamera-App</h1>
+    <p class="lead">
+      Foto · Video · QR scannen · Stop-Motion · Schnell · Langsam.
+      Start über <strong>Kamera-App</strong> im Anwendungsmenü — <strong>eigenes Fenster</strong> (nicht Firefox, nicht Chrome).
+    </p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Bereiche">
+    <button type="button" class="tab active" data-tab="camera" role="tab">Kamera</button>
+    <button type="button" class="tab" data-tab="gallery" role="tab">Galerie</button>
+  </nav>
+
+  <section id="panel-camera" class="panel" role="tabpanel">
+    <nav class="modes" role="tablist" aria-label="Kamera-Modi">
+      <button type="button" class="mode active" data-mode="foto">📷 Foto</button>
+      <button type="button" class="mode" data-mode="video">🎬 Video</button>
+      <button type="button" class="mode" data-mode="qr">📱 QR-Scan</button>
+      <button type="button" class="mode" data-mode="stopmotion">🎞️ Stop-Motion</button>
+      <button type="button" class="mode" data-mode="speed">⚡ Schnell</button>
+      <button type="button" class="mode" data-mode="slow">🐌 Langsam</button>
+    </nav>
+
+    <div id="camera-block" class="camera-block">
+      <p>Tippe unten — dann siehst du die Kamera:</p>
+      <button type="button" id="btn-camera-allow" class="btn btn-primary btn-big">📷 Kamera erlauben</button>
+    </div>
+
+    <div class="stage-wrap">
+      <video id="cam" autoplay playsinline webkit-playsinline muted aria-label="Kameravorschau"></video>
+      <canvas id="preview" width="640" height="480" class="capture-canvas" hidden aria-hidden="true"></canvas>
+      <div id="rec-dot" class="rec hidden" aria-live="polite">● AUFNAHME</div>
+      <div id="qr-overlay" class="qr-overlay hidden">
+        <div class="qr-frame" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <p id="status" class="status">Kamera wird gestartet …</p>
+    <p id="mode-hint" class="mode-hint"></p>
+
+    <div id="qr-result" class="qr-result hidden" aria-live="polite">
+      <strong>QR gefunden:</strong>
+      <p id="qr-text"></p>
+      <button type="button" id="btn-qr-copy" class="btn btn-ghost">Kopieren</button>
+      <a id="qr-link" class="qr-link hidden" href="#" target="_blank" rel="noopener">Link öffnen</a>
+    </div>
+
+    <div id="stopmotion-bar" class="stop-bar hidden">
+      <span id="frame-count">0 Bilder</span>
+      <button type="button" id="btn-play-frames" class="btn btn-ghost">▶ Vorschau</button>
+      <button type="button" id="btn-clear-frames" class="btn btn-ghost">Leeren</button>
+    </div>
+
+    <div class="toolbar">
+      <button type="button" id="btn-main" class="btn btn-primary btn-big">📷 Foto machen</button>
+      <button type="button" id="btn-flip" class="btn btn-ghost" title="Kamera drehen">🔄</button>
+      <button type="button" id="btn-mic" class="btn btn-ghost active" title="Mikrofon">🎤</button>
+    </div>
+  </section>
+
+  <section id="panel-gallery" class="panel hidden" role="tabpanel">
+    <h2>Das hast du gemacht</h2>
+    <p class="muted">Alles bleibt gespeichert — tippe auf ein Bild oder ▶ für Video</p>
+
+    <div id="gallery-viewer" class="gallery-viewer hidden">
+      <p class="viewer-label">Vorschau</p>
+      <div id="gallery-viewer-media"></div>
+      <button type="button" id="gallery-viewer-close" class="btn btn-ghost">✕ Schließen</button>
+    </div>
+
+    <div id="gallery-grid" class="gallery-grid"></div>
+    <p id="gallery-empty" class="empty-msg">Noch nichts — mach ein Foto oder Video!</p>
+  </section>
+
+  <p class="links-bottom">
+    <a href="index.html">← Startseite</a> ·
+    <code>./sofort-kamera-app.sh</code>
+  </p>
+
+  <script src="js/jsqr.js"></script>
+  <script type="module" src="js/kamera-app.js?v=9"></script>
+</body>
+</html>

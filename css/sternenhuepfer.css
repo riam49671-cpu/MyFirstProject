@@ -1,0 +1,192 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #0c1222;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --gold: #fbbf24;
+  --accent: #38bdf8;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: radial-gradient(ellipse 100% 80% at 50% 0%, #1e3a5f 0%, var(--bg) 55%);
+  color: var(--text);
+  font-family: system-ui, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 1rem 2rem;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 0.75rem;
+  max-width: 44rem;
+}
+
+header h1 {
+  margin: 0 0 0.35rem;
+  font-size: 1.65rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, var(--gold) 0%, #fcd34d 40%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+header p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.wrap {
+  position: relative;
+  width: 100%;
+  max-width: min(980px, 100%);
+}
+
+.sh-status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  padding: 0.4rem 0.65rem 0.45rem;
+  font-family: ui-monospace, monospace;
+  font-size: clamp(0.72rem, 2vw, 0.85rem);
+  font-weight: 700;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.55);
+  border-radius: 12px 12px 0 0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: none;
+}
+
+.sh-view {
+  position: relative;
+}
+
+#game {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0 0 12px 12px;
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.06);
+  background: #0f172a;
+  touch-action: none;
+}
+
+.btn-mute {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.55rem;
+  z-index: 2;
+  padding: 0.35rem 0.5rem;
+  font-size: 1.05rem;
+  line-height: 1;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.35);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.btn-mute:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.ui-layer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  border-radius: 0 0 12px 12px;
+}
+
+.ui-layer.interactive {
+  pointer-events: auto;
+}
+
+.card {
+  padding: 1.35rem 1.5rem;
+  max-width: 340px;
+  background: rgba(15, 23, 42, 0.95);
+  border-radius: 14px;
+  border: 1px solid rgba(251, 191, 36, 0.25);
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
+}
+
+.card h2 {
+  margin: 0 0 0.45rem;
+  font-size: 1.25rem;
+}
+
+.card p {
+  margin: 0 0 0.9rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+
+.btn {
+  appearance: none;
+  border: none;
+  padding: 0.5rem 1.15rem;
+  border-radius: 10px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(180deg, #fbbf24 0%, #d97706 100%);
+  color: #1c1917;
+  box-shadow: 0 4px 14px rgba(251, 191, 36, 0.35);
+}
+
+.btn:hover {
+  filter: brightness(1.06);
+}
+
+.card .btn + .btn {
+  margin-top: 0.5rem;
+}
+
+.sh-links {
+  margin: 0.85rem 0 0;
+  text-align: center;
+  font-size: 0.88rem;
+}
+
+.sh-links a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.sh-links a:hover {
+  color: var(--accent);
+}
+
+.hidden {
+  display: none !important;
+}
+
+html.sh-active,
+html.sh-active body {
+  user-select: none;
+}

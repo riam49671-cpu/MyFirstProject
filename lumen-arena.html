@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Lumen-Arena: Neon-Spielfeld — Energie sammeln, Jäger ausweichen, Combo und Wellen. Browser-Spiel mit Tastatur oder Maus."
+  />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#050510" />
+  <title>Lumen-Arena — Neon-Spielfeld</title>
+  <link rel="stylesheet" href="css/lumen-arena.css" />
+</head>
+<body>
+  <header>
+    <h1>Lumen-Arena</h1>
+    <p class="lead">
+      <strong>Punkte = Münzen</strong> — Fortschritt bleibt, bis du <strong>gewinnst</strong> (dann alles auf null) oder <strong>3×</strong> verlierst.
+      Im <strong>Laden</strong> (<kbd>B</kbd>) kaufst du Upgrades; die Stufen werden teurer und stärker.
+      <strong>20 Level</strong> steigen mit den Münzen dieser Runde; <strong>Sieg nach 3 Minuten</strong> Überleben.
+      Steuerung: <kbd>WASD</kbd> / Pfeile / Maus im Feld.
+    </p>
+  </header>
+
+  <div class="hud" aria-live="polite">
+    <span class="hud-time" title="Zeit bis zum Sieg">Zeit <strong id="survival-time">3:00</strong></span>
+    <span>Level <strong id="level-num">1</strong><span class="hud-sub">/20</span></span>
+    <span class="hud-coins" title="Deine Münzen">🪙 <strong id="coins">0</strong></span>
+    <span>Combo <strong id="combo">—</strong></span>
+    <span class="hud-lives" id="lives" title="Leben">♥♥♥</span>
+    <button type="button" class="btn-shop" id="btn-shop" title="Laden (B)">Laden</button>
+  </div>
+
+  <div class="arena-wrap" id="arena-wrap">
+    <canvas id="field" width="960" height="540" aria-label="Lumen-Arena Spielfeld"></canvas>
+    <div id="menu" class="ui-layer interactive">
+      <div class="card">
+        <h2>Bereit für das Feld?</h2>
+        <p>Überlebe <strong>3 Minuten</strong> = Sieg (dann Neustart ohne Stand). <strong>3× Game Over</strong> = ebenfalls alles von vorn. <kbd>B</kbd> = <strong>Laden</strong>.</p>
+        <button type="button" id="btn-start" class="btn">Spiel starten</button>
+        <p class="controls-hint">
+          <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> · Pfeile · Maus · <kbd>B</kbd> Laden
+        </p>
+      </div>
+    </div>
+    <div id="shop" class="ui-layer interactive hidden">
+      <div class="card card-shop">
+        <h2>Neon-Laden</h2>
+        <p class="shop-balance">Deine Münzen: <strong id="shop-coins">0</strong> 🪙</p>
+        <ul class="shop-list" id="shop-list"></ul>
+        <button type="button" class="btn btn-ghost" id="btn-shop-close">Weiter spielen</button>
+        <p class="controls-hint"><kbd>B</kbd> schließt den Laden auch</p>
+      </div>
+    </div>
+    <div id="overlay" class="ui-layer interactive hidden">
+      <div class="card">
+        <h2 id="over-title">Game Over</h2>
+        <p id="over-msg">Punkte: 0</p>
+        <button type="button" id="btn-again" class="btn">Nochmal</button>
+        <p class="controls-hint"><a href="index.html">← Übersicht</a></p>
+      </div>
+    </div>
+    <div id="win-overlay" class="ui-layer interactive hidden">
+      <div class="card card-win">
+        <h2>3 Minuten geschafft!</h2>
+        <p id="win-msg">Du hast gewonnen.</p>
+        <button type="button" id="btn-win-again" class="btn">Von vorn — zum Menü</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="links">
+    <a href="index.html">← Krone Spiel &amp; Übersicht</a>
+  </footer>
+
+  <script src="js/lumen-arena.js" defer></script>
+</body>
+</html>

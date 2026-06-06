@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Lego-Bauplatz: Wähle Steine und Farben — baue frei auf der grünen Platte!" />
+  <meta name="theme-color" content="#16a34a" />
+  <title>Lego-Bauplatz – frei bauen</title>
+  <link rel="stylesheet" href="css/lego-spiel.css?v=2" />
+</head>
+<body>
+  <header>
+    <h1>🧱 Lego-Bauplatz</h1>
+    <p>
+      Wähle einen <strong>Stein</strong> und eine <strong>Farbe</strong>, dann klicke auf die grüne Platte.
+      Mit <kbd>R</kbd> drehen. <kbd>Entf</kbd> = Löschen-Modus. Baue Häuser, Türme, was du willst!
+    </p>
+  </header>
+
+  <div class="layout">
+    <aside class="toolbar" aria-label="Lego-Werkzeugkasten">
+      <h2>Steine</h2>
+      <div id="brick-pick" class="pick-grid"></div>
+
+      <h2>Farbe</h2>
+      <div id="color-pick" class="color-row"></div>
+
+      <h2>Etage <span id="layer-num">1</span></h2>
+      <div class="row-btns">
+        <button type="button" id="btn-layer-down" class="btn btn-small" title="Etage runter">▼</button>
+        <button type="button" id="btn-layer-up" class="btn btn-small" title="Etage hoch">▲</button>
+      </div>
+
+      <div class="tool-btns">
+        <button type="button" id="btn-rotate" class="btn">↻ Drehen</button>
+        <button type="button" id="btn-erase" class="btn btn-ghost">🗑 Löschen</button>
+        <button type="button" id="btn-undo" class="btn btn-ghost">↩ Rückgängig</button>
+        <button type="button" id="btn-clear" class="btn btn-ghost">Alles weg</button>
+      </div>
+
+      <p id="status" class="status">Klicke auf die Platte — Stein setzen!</p>
+      <p class="count">Steine: <strong id="brick-count">0</strong></p>
+    </aside>
+
+    <div class="board-wrap">
+      <canvas id="board" width="640" height="640" aria-label="Lego-Bauplatte"></canvas>
+    </div>
+  </div>
+
+  <p class="links">
+    <a href="index.html">← Krone Spiel</a>
+  </p>
+  <script src="js/lego-spiel.js?v=2" defer></script>
+</body>
+</html>

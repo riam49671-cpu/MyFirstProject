@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Gesichts-Studio: Sofort spielen – Emojis aufs Gesicht, malen, Fotos und Videos machen." />
+  <meta name="theme-color" content="#7c3aed" />
+  <title>Gesichts-Studio – Kamera, Filter &amp; Galerie</title>
+  <link rel="stylesheet" href="css/gesichts-studio.css" />
+</head>
+<body>
+  <header>
+    <h1>Gesichts-Studio</h1>
+    <p>
+      Einfach <strong>spielen</strong> – Kamera an, <strong>Emojis</strong> aufs Gesicht, <strong>Hintergrund</strong> wechseln,
+      <strong>malen</strong>, <strong>viele Fotos &amp; Videos</strong> (lokal gespeichert). Alles in der Galerie.
+    </p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Bereiche">
+    <button type="button" class="tab active" data-tab="studio" role="tab" aria-selected="true">Studio</button>
+    <button type="button" class="tab" data-tab="gallery" role="tab" aria-selected="false">Galerie</button>
+  </nav>
+
+  <section id="panel-gallery" class="panel hidden" role="tabpanel">
+    <div class="gallery-toolbar">
+      <h2>Galerie</h2>
+      <p id="gallery-hint" class="muted">So viele Fotos und Videos du willst – alles bleibt hier im Browser, bis du es löschst.</p>
+    </div>
+    <div id="gallery-grid" class="gallery-grid" aria-live="polite"></div>
+    <p id="gallery-empty" class="empty-msg hidden">Noch nichts da – mach ein Foto oder Video im Studio!</p>
+  </section>
+
+  <section id="panel-studio" class="panel" role="tabpanel">
+    <div id="studio-main" class="studio">
+      <div class="speed-bar" role="toolbar" aria-label="Stop Motion – Bewegung anhalten und starten">
+        <span class="speed-label">Kamera:</span>
+        <button type="button" class="speed-btn" data-speed="stop" title="Gesicht aus – Kamera aus, kein Video">⏸ Gesicht aus</button>
+        <button type="button" class="speed-btn speed-btn-start" id="btn-motion-start" data-speed="start" title="Wieder an – dann Video möglich">▶ Start</button>
+        <span class="speed-sep" aria-hidden="true"></span>
+        <button type="button" class="speed-btn" data-speed="slow" title="Zeitlupe">🐌 Langsam</button>
+        <button type="button" class="speed-btn active" data-speed="normal" title="Normal">▶ Normal</button>
+        <button type="button" class="speed-btn" data-speed="fast" title="Schnell">⚡ Schnell</button>
+      </div>
+
+      <div class="stage-wrap">
+        <canvas id="preview" width="640" height="480" aria-label="Kameravorschau mit Filtern"></canvas>
+        <div id="rec-indicator" class="rec hidden" aria-live="polite">● AUFNAHME</div>
+        <p id="camera-status" class="camera-status">Kamera wird gestartet …</p>
+      </div>
+
+      <div class="tool-bar" role="toolbar" aria-label="Werkzeuge">
+        <button type="button" class="tool active" data-tool="emoji" title="Emoji aufs Gesicht">😀</button>
+        <button type="button" class="tool" data-tool="mask" title="Tiermasken &amp; Hut, Lippen">🎭</button>
+        <button type="button" class="tool" data-tool="paint" title="Selbst malen">🎨</button>
+        <button type="button" class="tool" data-tool="sticker" title="Aufkleber-Bild">🖼️</button>
+        <button type="button" class="tool" data-tool="background" title="Anderen Hintergrund">🏞️</button>
+        <span class="tool-sep"></span>
+        <button type="button" class="tool" id="btn-photo" title="Foto – ein Bild">📷</button>
+        <button type="button" class="tool" id="btn-video" title="Video aufnehmen – nochmal drücken zum Stoppen">🎬</button>
+        <button type="button" class="tool" id="btn-flip-cam" title="Kamera drehen">🔄</button>
+        <button type="button" class="tool active" id="btn-mic" title="Mikrofon an/aus">🎤</button>
+        <button type="button" class="tool" id="btn-clear" title="Alles vom Gesicht entfernen">🗑️</button>
+      </div>
+
+      <div id="sub-emoji" class="sub-panel">
+        <p class="sub-label">Emoji wählen – tippe, dann erscheint es auf deinem Gesicht:</p>
+        <div class="emoji-grid" id="emoji-grid"></div>
+      </div>
+      <div id="sub-mask" class="sub-panel hidden">
+        <p class="sub-label"><strong>Gesicht bedecken</strong> – Katze, Hund … (deckt dein Gesicht zu):</p>
+        <div class="mask-grid" id="face-mask-grid"></div>
+        <p class="sub-label"><strong>Aufsetzen</strong> – Spiel-Lippen, Hut … kleben auf Mund &amp; Kopf:</p>
+        <div class="mask-grid" id="accessory-grid"></div>
+        <button type="button" id="btn-mask-off" class="btn btn-ghost">Maske &amp; Aufsetzen weg</button>
+      </div>
+
+
+      <div id="sub-paint" class="sub-panel hidden">
+        <p class="sub-label">Male etwas Erfundenes – es klebt auf deiner Stirn:</p>
+        <div class="paint-row">
+          <canvas id="paint-canvas" width="120" height="120" aria-label="Malfläche"></canvas>
+          <div class="paint-controls">
+            <div class="color-row" id="color-row"></div>
+            <label class="field slim">
+              <span>Stift</span>
+              <input type="range" id="brush-size" min="2" max="18" value="6" />
+            </label>
+            <button type="button" id="btn-paint-clear" class="btn btn-ghost">Leeren</button>
+            <button type="button" id="btn-paint-apply" class="btn btn-primary">Aufs Gesicht!</button>
+          </div>
+        </div>
+      </div>
+
+
+      <div id="sub-background" class="sub-panel hidden">
+        <p class="sub-label"><strong>Hintergründe</strong> – Häuser, coole Zimmer, Wasser, Natur … du bleibst vorne:</p>
+        <div class="bg-grid" id="bg-grid"></div>
+        <label class="btn btn-ghost upload-btn">
+          Eigenes Hintergrundbild
+          <input type="file" id="bg-upload" accept="image/*" hidden />
+        </label>
+      </div>
+
+      <div id="sub-sticker" class="sub-panel hidden">
+        <p class="sub-label">Wähle ein Bild oder lade eins hoch:</p>
+        <div class="sticker-presets" id="sticker-presets"></div>
+        <label class="btn btn-ghost upload-btn">
+          Eigenes Bild
+          <input type="file" id="sticker-upload" accept="image/*" hidden />
+        </label>
+      </div>
+
+      <p class="face-hint muted" id="face-hint">Gesicht wird gesucht …</p>
+    </div>
+  </section>
+
+  <dialog id="lightbox">
+    <button type="button" class="lb-close" id="lb-close" aria-label="Schließen">×</button>
+    <div id="lb-content"></div>
+    <div class="lb-actions">
+      <a id="lb-download" class="btn btn-primary" download>Herunterladen</a>
+      <button type="button" id="lb-delete" class="btn btn-ghost danger">Löschen</button>
+    </div>
+  </dialog>
+
+  <p class="gs-links">
+    <a href="index.html">← Krone Spiel</a>
+    ·
+    <a href="offline-dino.html">Offline-Rex</a>
+  </p>
+
+  <script type="module" src="js/gesichts-studio.js"></script>
+</body>
+</html>

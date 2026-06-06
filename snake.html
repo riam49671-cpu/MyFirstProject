@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="application-name" content="Krone Spiel – Snake" />
+  <meta
+    name="description"
+    content="Snake für 2 Spieler im Browser: eine Tastatur – WASD vs. Pfeiltasten, Äpfel fressen, wer crasht verliert. Touch: linke/rechte Spielfeldhälfte."
+  />
+  <meta
+    name="keywords"
+    content="Snake, Schlange, Browser-Spiel, Retro, Highscore, kostenlos, Krone Spiel"
+  />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#15803d" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Snake – 2 Spieler im Browser" />
+  <meta
+    property="og:description"
+    content="Die Schlange füttern, nicht den Rand oder sich selbst berühren. Punkte sammeln wie früher auf dem Handy."
+  />
+  <meta property="og:locale" content="de_DE" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Snake – 2 Spieler" />
+  <meta name="twitter:description" content="Klassisches Snake kostenlos im Browser spielen." />
+  <title>Snake – 2 Spieler (Krone Spiel)</title>
+  <link rel="stylesheet" href="css/snake.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    "name": "Snake",
+    "description": "Snake für zwei Spieler am gleichen PC: grüne Schlange WASD, blaue Schlange Pfeiltasten. Ein Apfel, wer zuerst crasht verliert.",
+    "genre": ["Arcade game", "Action game"],
+    "playMode": "MultiPlayer",
+    "gamePlatform": "Web Browser",
+    "inLanguage": "de",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+</head>
+<body>
+  <header>
+    <h1>Snake · 2 Spieler</h1>
+    <p>
+      <strong>Spieler 1 (grün): W A S D</strong> · <strong>Spieler 2 (blau): Pfeiltasten</strong>.
+      Äpfel: je +1 Punkt. <strong>Kuss:</strong> beide Köpfe auf <strong>dieselbe Zelle</strong> oder sie
+      <strong>tauschen die Köpfe</strong> (Kreuzung) → beide tot. <strong>Von hinten fressen:</strong> nur
+      <strong>Schwanz oder weiter hinten</strong> am Körper (nicht das Feld direkt hinter dem Kopf des Gegners)
+      → du frisst die ganze Schlange (Bonus = Länge). Triffst du den <strong>Hals</strong> (Feld direkt hinter
+      seinem Kopf), stirbst du. Rand oder eigene Schlange = nur du stirbst. Am Ende zählen die meisten Punkte.
+      Am Ende gewinnt, wer die <strong>meisten Punkte</strong> hat (bei Gleichstand Unentschieden).
+      Handy: <strong>links wischen</strong> = Spieler 1, <strong>rechts</strong> = Spieler 2.
+    </p>
+  </header>
+
+  <div class="wrap">
+    <canvas id="game" width="960" height="480" aria-label="Snake 2 Spieler"></canvas>
+    <div class="hud hud-2p">
+      <div class="hud-left">
+        <span id="score1" class="tag-p1">0</span>
+        <span class="hud-sub">S1 · <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></span>
+      </div>
+      <div class="hud-center">
+        <span class="hud-2p-label">2P</span>
+        <span id="best" class="best best-under">Best: —</span>
+      </div>
+      <div class="hud-right">
+        <span id="score2" class="tag-p2">0</span>
+        <span class="hud-sub">S2 · <kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd></span>
+      </div>
+      <button type="button" id="btn-mute" class="btn-mute" title="Musik &amp; Effekte aus/an" aria-pressed="false">
+        🔊
+      </button>
+    </div>
+    <div id="menu" class="ui-layer interactive">
+      <div class="card">
+        <h2>Los</h2>
+        <p>Zwei Personen am gleichen PC. 🔊 schaltet <strong>Musik und Effekte</strong> aus.</p>
+        <button type="button" id="btn-start" class="btn">Start</button>
+      </div>
+    </div>
+    <div id="overlay" class="ui-layer interactive hidden">
+      <div class="card">
+        <h2 id="end-title">Game Over</h2>
+        <p id="final-score">Punkte: 0</p>
+        <button type="button" id="btn-again" class="btn">Nochmal</button>
+      </div>
+    </div>
+  </div>
+
+  <p class="snake-links">
+    <a class="back" href="snake1p.html">Snake 1 Spieler</a>
+    ·
+    <a class="back" href="krokodil.html">Krokodil</a>
+    ·
+    <a class="back" href="runner.html">Neon-Sprinter</a>
+    ·
+    <a class="back" href="index.html">Krone Spiel</a>
+  </p>
+  <script src="js/snake.js" defer></script>
+</body>
+</html>

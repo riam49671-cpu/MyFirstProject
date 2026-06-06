@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Wer ist was: Kopf-Ratespiel für 2–4 Personen — einer rät, die anderen erklären." />
+  <meta name="theme-color" content="#0f1419" />
+  <title>Wer ist was – Kopf raten (2–4 Spieler)</title>
+  <link rel="stylesheet" href="css/wer-ist-was.css" />
+</head>
+<body>
+  <header>
+    <h1>Wer ist was</h1>
+    <p class="lead">
+      Wie beim Spiel mit dem Zettel auf der Stirn: <strong>Eine Person</strong> weiß nicht, was sie „im Kopf“ hat.
+      Die <strong>anderen</strong> sehen das Wort auf dem Handy und <strong>erklären</strong> es mündlich (ohne es direkt zu sagen).
+      Danach muss der oder die Raterin <strong>raten</strong>, was gemeint ist — bis zu <strong>vier Spieler</strong>.
+    </p>
+  </header>
+
+  <!-- Lobby -->
+  <section id="lobby" class="panel">
+    <h2 class="panel-title">Mitspieler</h2>
+    <p class="muted small">Wählt, wie viele ihr seid (2 bis 4).</p>
+    <label class="row">
+      Anzahl:
+      <select id="num-players">
+        <option value="2">2</option>
+        <option value="3" selected>3</option>
+        <option value="4">4</option>
+      </select>
+    </label>
+    <button type="button" id="btn-begin" class="btn-primary wide">Spiel starten</button>
+  </section>
+
+  <!-- Spiel -->
+  <section id="play" class="panel hidden">
+    <div class="hud-play">
+      <span>Runde <strong id="round-num">1</strong></span>
+      <span id="scores-line"></span>
+    </div>
+
+    <!-- 1: Rater schaut weg -->
+    <div id="phase-away" class="phase">
+      <div class="card-q">
+        <p id="away-text" class="away-msg"></p>
+      </div>
+      <p class="muted small">Der genannte Spieler darf <strong>nicht</strong> auf den Bildschirm schauen.</p>
+      <button type="button" id="btn-away-next" class="btn-primary wide">Weiter — das Wort kommt nur für die anderen</button>
+    </div>
+
+    <!-- 2: Wort nur für Erklärer -->
+    <div id="phase-show" class="phase hidden">
+      <div class="card-q card-secret">
+        <p class="hint">Nur für die, die <strong>erklären</strong> — nicht für den Rater!</p>
+        <p id="secret-big" class="secret-big" aria-live="polite"></p>
+      </div>
+      <button type="button" id="btn-hide-guess" class="btn-primary wide">Fertig mit Erklären — jetzt raten</button>
+    </div>
+
+    <!-- 3: Raten -->
+    <div id="phase-guess" class="phase hidden">
+      <div class="card-q">
+        <p id="guess-title" class="guess-title"></p>
+        <label class="sr-only" for="guess-input">Dein Ratschlag</label>
+        <input type="text" id="guess-input" class="guess-input" autocomplete="off" placeholder="Was hat du „im Kopf“?" />
+      </div>
+      <button type="button" id="btn-submit-guess" class="btn-primary wide">Raten</button>
+    </div>
+
+    <!-- 4: Ergebnis -->
+    <div id="phase-result" class="phase hidden">
+      <div class="card-q">
+        <p id="result-msg" class="result-msg"></p>
+        <p class="muted">Das Wort war: <strong id="result-answer"></strong></p>
+      </div>
+      <button type="button" id="btn-next-round" class="btn-primary wide">Nächste Runde</button>
+    </div>
+  </section>
+
+  <p class="controls-hint">
+    Ihr spielt am besten im Kreis: Handy reichen, Rater schaut weg, dann erklären, dann raten.
+  </p>
+  <p class="links-bottom"><a href="index.html">← Übersicht</a></p>
+
+  <script src="js/wer-ist-was.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Krokodil Zahnarzt: Zähne drücken zu zweit – einer beißt zu!" />
+  <title>Krokodil – Zahnarzt für 2</title>
+  <link rel="stylesheet" href="css/krokodil.css" />
+</head>
+<body>
+  <header>
+    <h1>Krokodil-Zahnarzt</h1>
+    <p>
+      Oben und unten sind Zähne zu sehen – <strong>nur die unteren</strong> dürft ihr drücken.
+      <strong>Einer</strong> ist der falsche Zahn: dann knallt das Maul zu – wer ihn gewählt hat,
+      <strong>verliert</strong>.
+    </p>
+  </header>
+
+  <div class="turn-bar" id="turn-bar">
+    <span class="turn-pill p1" id="pill-p1">Spieler 1</span>
+    <span class="turn-vs">VS</span>
+    <span class="turn-pill p2" id="pill-p2">Spieler 2</span>
+  </div>
+
+  <div class="wrap">
+    <canvas id="game" width="880" height="520" aria-label="Krokodil mit Zähnen"></canvas>
+    <div id="overlay-start" class="ui-layer interactive">
+      <div class="card">
+        <h2>Neues Spiel</h2>
+        <p>
+          Nur die <strong>unteren</strong> Zähne sind zum Drücken – oben nur Dekoration.
+          Ein unterer Zahn ist „böse“. Los geht’s mit Spieler 1.
+        </p>
+        <button type="button" id="btn-start" class="btn">Start</button>
+      </div>
+    </div>
+    <div id="overlay-end" class="ui-layer interactive hidden">
+      <div class="card">
+        <h2 id="end-title">Knapp!</h2>
+        <p id="end-msg"></p>
+        <button type="button" id="btn-again" class="btn">Nochmal</button>
+      </div>
+    </div>
+  </div>
+
+  <a class="back" href="index.html">← Krone Spiel</a>
+  <script src="js/krokodil.js" defer></script>
+</body>
+</html>

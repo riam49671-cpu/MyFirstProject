@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Regenbogen-Spiel: Tasten drücken oder klicken — sanfte Regenbogen-Bögen und Farben, ohne Punktestress."
+  />
+  <meta name="theme-color" content="#0a0a12" />
+  <title>Regenbogen-Spiel</title>
+  <link rel="stylesheet" href="css/regenbogen-spiel.css" />
+</head>
+<body>
+  <header>
+    <h1>Regenbogen-Spiel</h1>
+    <p class="lead">
+      <strong>Drücken</strong> (<kbd>1</kbd>–<kbd>7</kbd> oder Klick): Es kommt <strong>immer ein sanfter Klang</strong> (Ton über den Browser).
+      Wenn du die drei MP3 im Ordner <code>audio/regenbogen/</code> hast, läuft zusätzlich der Reihe nach 
+      <strong>MATADORA</strong> → <strong>No Batidão</strong> → <strong>Soda Pop</strong>. Ohne MP3 hörst du nur den Klang.
+      <kbd>Leertaste</kbd> / <kbd>Esc</kbd> leert das Bild und setzt die Reihenfolge zurück.
+    </p>
+  </header>
+
+  <div class="hud">
+    <span>Zuletzt: <strong id="druecke-zahl">Taste 1–7 oder Klick</strong></span>
+    <span class="hud-music" id="musik-hinweis">Jeder Druck: sanfter Klang · MP3 optional</span>
+  </div>
+
+  <div class="wrap">
+    <canvas id="feld" width="800" height="380" aria-label="Regenbogen-Spiel"></canvas>
+  </div>
+
+  <div class="tasten" role="group" aria-label="Farben per Klick">
+    <button type="button" class="taste" style="background: #ff6b6b" data-farbe="0">
+      1<span class="taste-num">Rot</span>
+    </button>
+    <button type="button" class="taste" style="background: #ffa94d" data-farbe="1">
+      2<span class="taste-num">Orange</span>
+    </button>
+    <button type="button" class="taste" style="background: #ffd93d" data-farbe="2">
+      3<span class="taste-num">Gelb</span>
+    </button>
+    <button type="button" class="taste" style="background: #6bcb77" data-farbe="3">
+      4<span class="taste-num">Grün</span>
+    </button>
+    <button type="button" class="taste" style="background: #4d96ff" data-farbe="4">
+      5<span class="taste-num">Blau</span>
+    </button>
+    <button type="button" class="taste" style="background: #6c5ce7" data-farbe="5">
+      6<span class="taste-num">Indigo</span>
+    </button>
+    <button type="button" class="taste" style="background: #b565d8" data-farbe="6">
+      7<span class="taste-num">Violett</span>
+    </button>
+  </div>
+
+  <p class="links-bottom">
+    <a href="index.html">← Übersicht</a>
+  </p>
+
+  <script src="js/regenbogen-spiel.js" defer></script>
+</body>
+</html>

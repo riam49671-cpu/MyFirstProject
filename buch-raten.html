@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Buch raten: Ein Buch wählen, beschreiben und skizzieren — allein gegen den Roboter oder zu zweit mit Computer-Wertung. Mehrere Sprachen (u. a. DE, EN, IT, ID, FR, ES, PT)."
+  />
+  <meta name="theme-color" content="#d4c4b0" />
+  <title>Buch raten — beschreiben &amp; zeichnen</title>
+  <link rel="stylesheet" href="css/buch-raten.css" />
+</head>
+<body>
+  <header>
+    <h1>Buch raten</h1>
+    <p class="lead">
+      Du <strong>musst den Buchtitel hinschreiben</strong> — es kann <strong>jedes Buch</strong> sein; bekannte Titel werden
+      der internen Liste zugeordnet, sonst gilt genau dein geschriebener Titel (Schreibweise kann variieren).
+      Das <strong>zweite Feld</strong> (mehr zum Inhalt) ist <strong>freiwillig</strong> — leer lassen ist okay;
+      dann nutzt der Roboter vor allem deinen <strong>Buchtitel</strong> zum Schätzen (die Zeichnung „sieht“ er nicht).
+      <strong>Zeichnen</strong> darfst du mit <strong>vielen Farben</strong>, <strong>verschiedenen Strichstärken</strong>, Stift oder Radierer.
+      <strong>Alleine:</strong> Extra-Hinweise kannst du ergänzen, musst du aber nicht.
+      <strong>Zu zweit:</strong> Der Computer wertet Hinweise zum Buch — ohne zweites Feld zählt der Titel — und wie viel / wie stark ihr malt.
+      Sprache und Modus unten wählen, dann <strong>Los</strong>.
+    </p>
+  </header>
+
+  <div id="step-setup" class="panel">
+    <div class="row">
+      <label for="select-lang">Sprache · Language · Lingua · Bahasa · Langue · Idioma · Língua</label>
+      <select id="select-lang">
+        <option value="de" selected>Deutsch</option>
+        <option value="en">English</option>
+        <option value="it">Italiano</option>
+        <option value="id">Bahasa Indonesia</option>
+        <option value="fr">Français</option>
+        <option value="es">Español</option>
+        <option value="pt">Português</option>
+      </select>
+    </div>
+    <div class="row">
+      <label for="select-mode">Modus / Mode</label>
+      <select id="select-mode">
+        <option value="solo" selected>Alleine vs. Roboter</option>
+        <option value="duo">Zwei Spieler + Computer-Wertung</option>
+      </select>
+    </div>
+    <button type="button" id="btn-go-setup" class="btn">Los</button>
+  </div>
+
+  <div id="step-solo" class="panel hidden">
+    <p class="hint-small">Sprache: <span id="lang-display" class="lang-badge">DE</span></p>
+    <div class="row">
+      <label for="book-written-solo" id="label-written-solo">Dein Buch — Titel hinschreiben (Pflicht)</label>
+      <input type="text" id="book-written-solo" class="input-book" autocomplete="off" spellcheck="true" />
+    </div>
+    <div class="row">
+      <label for="hint-solo" id="label-hint-solo">Optional: Stichworte zum Inhalt (ohne Buchtitel)</label>
+      <textarea id="hint-solo" placeholder="Leer lassen ist erlaubt — oder z. B. Figuren, Ort, Stimmung …"></textarea>
+    </div>
+    <div class="row">
+      <label>Zeichnung — Farben, Stifte, Radierer</label>
+      <div class="draw-toolbar" id="toolbar-solo">
+        <div class="toolbar-row toolbar-colors-row">
+          <span class="lbl-width">Dicke</span>
+          <input type="range" class="width-range" min="2" max="32" value="5" />
+          <span class="width-val">5</span>
+          <button type="button" class="color-dot active" data-color="#2c2416" style="background:#2c2416" aria-label="Farbe"></button>
+          <button type="button" class="color-dot" data-color="#5c4033" style="background:#5c4033" aria-label="Farbe"></button>
+          <button type="button" class="color-dot" data-color="#b91c1c" style="background:#b91c1c" aria-label="Farbe"></button>
+          <button type="button" class="color-dot" data-color="#15803d" style="background:#15803d" aria-label="Farbe"></button>
+          <button type="button" class="color-dot" data-color="#1d4ed8" style="background:#1d4ed8" aria-label="Farbe"></button>
+          <button type="button" class="color-dot" data-color="#a855f7" style="background:#a855f7" aria-label="Farbe"></button>
+          <button type="button" class="color-dot" data-color="#ea580c" style="background:#ea580c" aria-label="Farbe"></button>
+          <button type="button" class="color-dot" data-color="#eab308" style="background:#eab308" aria-label="Farbe"></button>
+          <input type="color" class="color-picker" value="#2c2416" title="Eigene Farbe" />
+        </div>
+        <div class="toolbar-row toolbar-modes">
+          <button type="button" class="btn-tool btn-pen active">Stift</button>
+          <button type="button" class="btn-tool btn-erase">Radierer</button>
+          <button type="button" id="btn-clear-solo" class="btn btn-secondary btn-tool-clear">Fläche leeren</button>
+        </div>
+      </div>
+      <div class="canvas-wrap">
+        <canvas id="draw-canvas-solo" width="520" height="280" aria-label="Zeichenfläche"></canvas>
+      </div>
+    </div>
+    <button type="button" id="btn-solo-guess" class="btn">Roboter raten lassen</button>
+  </div>
+
+  <div id="step-p1" class="panel hidden">
+    <p class="hint-small">Spieler 1 · Sprache: <span class="lang-display-sync lang-badge">DE</span></p>
+    <div class="row">
+      <label for="book-written-p1" id="label-written-p1">Spieler 1 — Buchtitel hinschreiben (Pflicht)</label>
+      <input type="text" id="book-written-p1" class="input-book" autocomplete="off" spellcheck="true" />
+    </div>
+    <div class="row">
+      <label for="hint-p1" id="label-hint-p1">Optional: Stichworte zum Inhalt</label>
+      <textarea id="hint-p1" placeholder="Optional …"></textarea>
+    </div>
+    <div class="row">
+      <label>Zeichnung</label>
+      <div class="draw-toolbar" id="toolbar-p1">
+        <div class="toolbar-row toolbar-colors-row">
+          <span class="lbl-width">Dicke</span>
+          <input type="range" class="width-range" min="2" max="32" value="5" />
+          <span class="width-val">5</span>
+          <button type="button" class="color-dot active" data-color="#2c2416" style="background:#2c2416" aria-label="Farbe"></button>
+          <button type="button" class="color-dot" data-color="#5c4033" style="background:#5c4033" aria-label="Farbe"></button>
+          <button type="button" class="color-dot" data-color="#b91c1c" style="background:#b91c1c" aria-label="Farbe"></button>
+          <button type="button" class="color-dot" data-color="#15803d" style="background:#15803d" aria-label="Farbe"></button>
+          <button type="button" class="color-dot" data-color="#1d4ed8" style="background:#1d4ed8" aria-label="Farbe"></button>
+          <button type="button" class="color-dot" data-color="#a855f7" style="background:#a855f7" aria-label="Farbe"></button>
+          <button type="button" class="color-dot" data-color="#ea580c" style="background:#ea580c" aria-label="Farbe"></button>
+          <button type="button" class="color-dot" data-color="#eab308" style="background:#eab308" aria-label="Farbe"></button>
+          <input type="color" class="color-picker" value="#2c2416" title="Eigene Farbe" />
+        </div>
+        <div class="toolbar-row toolbar-modes">
+          <button type="button" class="btn-tool btn-pen active">Stift</button>
+          <button type="button" class="btn-tool btn-erase">Radierer</button>
+          <button type="button" id="btn-clear-p1" class="btn btn-secondary btn-tool-clear">Fläche leeren</button>
+        </div>
+      </div>
+      <div class="canvas-wrap">
+        <canvas id="draw-canvas-p1" width="520" height="280" aria-label="Spieler 1 Zeichenfläche"></canvas>
+      </div>
+    </div>
+    <button type="button" id="btn-p1-next" class="btn">Spieler 2</button>
+  </div>
+
+  <div id="step-p2" class="panel hidden">
+    <p class="hint-small">Spieler 2 · Sprache: <span class="lang-display-sync lang-badge">DE</span></p>
+    <div class="row">
+      <label for="book-written-p2" id="label-written-p2">Spieler 2 — Buchtitel hinschreiben (Pflicht)</label>
+      <input type="text" id="book-written-p2" class="input-book" autocomplete="off" spellcheck="true" />
+    </div>
+    <div class="row">
+      <label for="hint-p2" id="label-hint-p2">Optional: Stichworte zum Inhalt</label>
+      <textarea id="hint-p2" placeholder="Optional …"></textarea>
+    </div>
+    <div class="row">
+      <label>Zeichnung</label>
+      <div class="draw-toolbar" id="toolbar-p2">
+        <div class="toolbar-row toolbar-colors-row">
+          <span class="lbl-width">Dicke</span>
+          <input type="range" class="width-range" min="2" max="32" value="5" />
+          <span class="width-val">5</span>
+          <button type="button" class="color-dot active" data-color="#2c2416" style="background:#2c2416" aria-label="Farbe"></button>
+          <button type="button" class="color-dot" data-color="#5c4033" style="background:#5c4033" aria-label="Farbe"></button>
+          <button type="button" class="color-dot" data-color="#b91c1c" style="background:#b91c1c" aria-label="Farbe"></button>
+          <button type="button" class="color-dot" data-color="#15803d" style="background:#15803d" aria-label="Farbe"></button>
+          <button type="button" class="color-dot" data-color="#1d4ed8" style="background:#1d4ed8" aria-label="Farbe"></button>
+          <button type="button" class="color-dot" data-color="#a855f7" style="background:#a855f7" aria-label="Farbe"></button>
+          <button type="button" class="color-dot" data-color="#ea580c" style="background:#ea580c" aria-label="Farbe"></button>
+          <button type="button" class="color-dot" data-color="#eab308" style="background:#eab308" aria-label="Farbe"></button>
+          <input type="color" class="color-picker" value="#2c2416" title="Eigene Farbe" />
+        </div>
+        <div class="toolbar-row toolbar-modes">
+          <button type="button" class="btn-tool btn-pen active">Stift</button>
+          <button type="button" class="btn-tool btn-erase">Radierer</button>
+          <button type="button" id="btn-clear-p2" class="btn btn-secondary btn-tool-clear">Fläche leeren</button>
+        </div>
+      </div>
+      <div class="canvas-wrap">
+        <canvas id="draw-canvas-p2" width="520" height="280" aria-label="Spieler 2 Zeichenfläche"></canvas>
+      </div>
+    </div>
+    <button type="button" id="btn-duo-judge" class="btn">Computer wertet</button>
+  </div>
+
+  <div id="step-result-solo" class="panel hidden">
+    <h2 style="font-size: 1.2rem; margin-top: 0">Ergebnis</h2>
+    <p id="result-solo-title"></p>
+    <div id="result-solo-box" class="result-box">
+      <p id="result-solo-msg"></p>
+      <p id="result-solo-detail" class="hint-small" style="margin-bottom: 0"></p>
+    </div>
+    <div class="steps-nav">
+      <button type="button" id="btn-restart" class="btn btn-ghost">Neue Runde</button>
+    </div>
+  </div>
+
+  <div id="step-result-duo" class="panel hidden">
+    <div class="result-duo-gallery">
+      <div class="result-duo-img-wrap">
+        <img id="result-duo-img-p1" alt="" width="520" height="280" />
+      </div>
+      <div class="result-duo-img-wrap">
+        <img id="result-duo-img-p2" alt="" width="520" height="280" />
+      </div>
+    </div>
+    <div class="steps-nav">
+      <button type="button" id="btn-restart-duo" class="btn btn-ghost">Neue Runde</button>
+    </div>
+  </div>
+
+  <footer class="links">
+    <a href="index.html">← Krone Spiel &amp; Übersicht</a>
+  </footer>
+
+  <script src="js/buch-raten.js" defer></script>
+</body>
+</html>

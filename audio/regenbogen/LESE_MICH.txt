@@ -1,0 +1,18 @@
+Regenbogen-Spiel — eigene Musik-Dateien
+========================================
+
+Das Spiel spielt echte STIMMEN/Gesang aus drei Dateien (Reihenfolge beim Drücken):
+
+  1. matadora.mp3      — z. B. „MATADORA“ (DJ Asul) — Kurzausschnitt
+  2. no-batidao.mp3    — z. B. „No Batidão“ (Melody & …) — Kurzausschnitt  
+  3. soda-pop.mp3      — dein gewünschter „Soda Pop“-Track — Kurzausschnitt
+
+So geht’s:
+  • Lege genau diese drei Dateinamen hier ab (MP3).
+  • Nur Ausschnitte von ein paar Sekunden bis ~20 s einfügen, wenn du das komplette Lied nicht hören willst (das Spiel stoppt nach ca. 22 s automatisch).
+
+Rechtliches:
+  • Nur Tonspuren verwenden, die du selbst erstellt hast, gekauft hast oder die du für dieses Projekt frei nutzen darfst.
+  • Gekaufte Streaming-Titel dürfen oft nicht einfach als MP3 abgelegt werden — frag ggf. die Eltern oder nutze lizenzfreie Quellen.
+
+Ohne diese drei Dateien erscheint eine Fehlermeldung im Spiel.

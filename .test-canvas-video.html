@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="de"><head><meta charset="UTF-8"><title>test</title></head>
+<body>
+<script>
+(async () => {
+  const c = document.createElement("canvas");
+  c.width = 320; c.height = 240;
+  document.body.appendChild(c);
+  const ctx = c.getContext("2d");
+  let n = 0;
+  const draw = () => {
+    n++;
+    ctx.fillStyle = `hsl(${n % 360} 70% 45%)`;
+    ctx.fillRect(0, 0, c.width, c.height);
+    ctx.fillStyle = "#fff";
+    ctx.font = "28px sans-serif";
+    ctx.fillText("Test " + n, 24, 50);
+  };
+  draw();
+  const stream = c.captureStream(30);
+  const track = stream.getVideoTracks()[0];
+  const types = ["video/webm;codecs=vp9", "video/webm;codecs=vp8", "video/webm"];
+  const mime = types.find((t) => MediaRecorder.isTypeSupported(t));
+  if (!mime) { document.body.dataset.result = "FAIL:no-mime"; return; }
+  const chunks = [];
+  const rec = new MediaRecorder(stream, { mimeType: mime });
+  rec.ondataavailable = (e) => { if (e.data.size) chunks.push(e.data); };
+  rec.onstop = () => {
+    const blob = new Blob(chunks, { type: mime });
+    document.body.dataset.result = blob.size > 500 ? "OK:" + blob.size : "FAIL:empty";
+  };
+  const timer = setInterval(() => {
+    draw();
+    if (track.requestFrame) track.requestFrame();
+  }, 33);
+  rec.start();
+  await new Promise((r) => setTimeout(r, 1200));
+  clearInterval(timer);
+  rec.stop();
+})();
+</script>
+</body></html>

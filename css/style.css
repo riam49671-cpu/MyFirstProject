@@ -71,6 +71,15 @@ body {
   font-size: 0.95rem;
 }
 
+.menu-row-block {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.menu-row-block label {
+  margin-bottom: 0.35rem;
+}
+
 .menu-row select {
   padding: 0.4rem 0.6rem;
   border-radius: 8px;
@@ -119,6 +128,34 @@ body {
   background: var(--bg);
   color: var(--text);
   font-size: 0.85rem;
+}
+
+.menu-summary {
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.select-compact {
+  padding: 0.35rem 0.5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 0.85rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
 
 .online-hint code {
@@ -189,9 +226,45 @@ kbd {
   color: var(--accent);
 }
 
+.hud-mid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  align-items: flex-start;
+  min-width: 0;
+}
+
 .hud-crown {
   font-size: 0.95rem;
   color: var(--muted);
+}
+
+.hud-protect {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #86efac;
+  letter-spacing: 0.02em;
+}
+
+.btn-mute {
+  margin-left: auto;
+  padding: 0.35rem 0.55rem;
+  font-size: 1.1rem;
+  line-height: 1;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.btn-mute:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.hud {
+  flex-wrap: wrap;
+  max-width: calc(100vw - 2rem);
 }
 
 .overlay {

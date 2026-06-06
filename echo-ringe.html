@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Echo-Ringe: Lege leuchtende Ringe als Fallen — ein eigenes Neon-Browser-Spiel."
+  />
+  <meta name="theme-color" content="#05060f" />
+  <title>Echo-Ringe — Fallen für Schatten</title>
+  <link rel="stylesheet" href="css/echo-ringe.css" />
+</head>
+<body>
+  <header>
+    <h1>Echo-Ringe</h1>
+    <p class="lead">
+      Dein Lichtpunkt folgt der Maus. <strong>Klick</strong> (oder <kbd>E</kbd>) legt einen <strong>Echo-Ring</strong> an der Stelle, wo du gerade bist —
+      maximal <strong>drei</strong> gleichzeitig; ältere verblassen nach ein paar Sekunden. Schatten, die durch einen Ring fahren, platzen und geben Punkte.
+      Rechtsklick oder <kbd>Q</kbd> nimmt den <strong>ältesten</strong> Ring weg. Berührt dich ein Schatten — Ende.
+    </p>
+  </header>
+
+  <div class="hud">
+    <span>Punkte <strong id="score">0</strong></span>
+    <span>Ringslots <strong id="echo-count">0/3</strong></span>
+  </div>
+
+  <div class="wrap">
+    <canvas id="feld" width="720" height="480" aria-label="Echo-Ringe Spielfeld"></canvas>
+    <div id="menu" class="ui-layer">
+      <div class="card">
+        <h2>Echo-Ringe</h2>
+        <p>Bewege die Maus, klick zum Ring. Schlage Schatten mit Köpfchen.</p>
+        <button type="button" id="btn-start" class="btn">Los</button>
+        <p class="controls-hint"><kbd>E</kbd> Ring · <kbd>Q</kbd> ältesten Ring weg</p>
+      </div>
+    </div>
+    <div id="overlay" class="ui-layer hidden">
+      <div class="card">
+        <h2>Erwischt</h2>
+        <p id="over-msg">—</p>
+        <button type="button" id="btn-again" class="btn">Nochmal</button>
+      </div>
+    </div>
+  </div>
+
+  <p class="links-bottom">
+    <a href="index.html">← Übersicht</a>
+    ·
+    <a href="lichtpuls.html">Lichtpuls</a>
+  </p>
+
+  <script src="js/echo-ringe.js" defer></script>
+</body>
+</html>

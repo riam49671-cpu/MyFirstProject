@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="application-name" content="Krone Spiel – Snake 1 Spieler" />
+  <meta
+    name="description"
+    content="Snake allein im Browser: Schlange steuern, Äpfel fressen, mit Hintergrundmusik – Pfeiltasten oder WASD."
+  />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#15803d" />
+  <meta property="og:title" content="Snake – 1 Spieler" />
+  <meta property="og:description" content="Klassisches Snake mit Musik. Highscore wird gespeichert." />
+  <title>Snake – 1 Spieler (Krone Spiel)</title>
+  <link rel="stylesheet" href="css/snake.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    "name": "Snake (Einzelspieler)",
+    "description": "Snake mit Musik und Effekten. Steuerung WASD oder Pfeiltasten.",
+    "genre": ["Arcade game"],
+    "playMode": "SinglePlayer",
+    "gamePlatform": "Web Browser",
+    "inLanguage": "de",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+</head>
+<body>
+  <header>
+    <h1>Snake · 1 Spieler</h1>
+    <p>
+      <strong>Pfeiltasten</strong> oder <strong>W A S D</strong> – iss die goldenen Felder, werde schneller und länger.
+      Rand oder eigener Schwanz = Ende. 🔊 schaltet <strong>Musik und Effekte</strong> gemeinsam aus.
+    </p>
+  </header>
+
+  <div class="wrap">
+    <canvas id="game" width="960" height="480" aria-label="Snake Einzelspieler"></canvas>
+    <div class="hud">
+      <div class="hud-left">
+        <span id="score">0</span>
+        <span id="best" class="best">Best: —</span>
+      </div>
+      <button type="button" id="btn-mute" class="btn-mute" title="Musik &amp; Effekte aus/an" aria-pressed="false">
+        🔊
+      </button>
+    </div>
+    <div id="menu" class="ui-layer interactive">
+      <div class="card">
+        <h2>Los</h2>
+        <p>Hintergrundmusik läuft nach Start (wie beim 2-Spieler-Snake).</p>
+        <button type="button" id="btn-start" class="btn">Start</button>
+      </div>
+    </div>
+    <div id="overlay" class="ui-layer interactive hidden">
+      <div class="card">
+        <h2>Game Over</h2>
+        <p id="final-score">Punkte: 0</p>
+        <button type="button" id="btn-again" class="btn">Nochmal</button>
+      </div>
+    </div>
+  </div>
+
+  <p class="snake-links">
+    <a class="back" href="snake.html">Snake 2 Spieler</a>
+    ·
+    <a class="back" href="index.html">Krone Spiel</a>
+  </p>
+  <script src="js/snake1p.js" defer></script>
+</body>
+</html>

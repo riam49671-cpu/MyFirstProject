@@ -1,19 +1,26 @@
 #!/usr/bin/env bash
-# Startet den lokalen Server (Port 8765) und öffnet Google Chrome.
-# Kurzbefehl in Chrome: siehe chrome-krone-anleitung.txt
+# Lokaler Server (8765) + Chrome auf Krone-Spiel — möglichst sofort.
 set -e
 PORT=8765
 DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$DIR"
 
-if timeout 0.2 bash -c "echo >/dev/tcp/127.0.0.1/$PORT" 2>/dev/null; then
-  echo "Server läuft schon auf Port $PORT."
+port_open() {
+  timeout 0.12 bash -c "echo >/dev/tcp/127.0.0.1/$PORT" 2>/dev/null
+}
+
+if port_open; then
+  echo "Server läuft schon auf Port $PORT." >&2
 else
   python3 -m http.server "$PORT" --bind 127.0.0.1 >/dev/null 2>&1 &
   echo $! >"$DIR/.krone-spiel-server.pid"
-  sleep 0.35
-  echo "Server gestartet: http://127.0.0.1:$PORT/"
+  for _ in $(seq 1 40); do
+    port_open && break
+    sleep 0.05
+  done
 fi
+
+echo "Chrome öffnet — für Musik im Spiel „Spiel starten“ drücken." >&2
 
 URL="http://127.0.0.1:$PORT/index.html"
 for chrome in google-chrome-stable google-chrome; do

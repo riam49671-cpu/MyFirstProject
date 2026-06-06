@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Neon-Sprinter: Endless Runner im Browser – springen über Hindernisse, Punkte sammeln." />
+  <title>Neon-Sprinter – Endless Runner</title>
+  <link rel="stylesheet" href="css/runner.css" />
+</head>
+<body>
+  <header>
+    <h1>Neon-Sprinter</h1>
+    <p>Spring über die violetten Balken. <strong>Leertaste</strong> oder Tippen &mdash; nicht reinrennen.</p>
+  </header>
+
+  <div class="wrap">
+    <canvas id="game" width="960" height="400" aria-label="Neon-Sprinter Spielfeld"></canvas>
+    <div class="hud">
+      <div class="hud-left">
+        <span id="score">0</span>
+        <span id="best" class="best">Best: —</span>
+      </div>
+      <button type="button" id="btn-mute" class="btn-mute" title="Musik aus/an" aria-pressed="false">
+        🔊
+      </button>
+    </div>
+    <div id="menu" class="ui-layer interactive">
+      <div class="card">
+        <h2>Los</h2>
+        <p>Ein Treffer = Ende. 🔊 = Musik aus/an.</p>
+        <button type="button" id="btn-start" class="btn">Los</button>
+      </div>
+    </div>
+    <div id="overlay" class="ui-layer interactive hidden">
+      <div class="card">
+        <h2>Game Over</h2>
+        <p id="final-score">Punkte: 0</p>
+        <button type="button" id="btn-again" class="btn">Nochmal</button>
+      </div>
+    </div>
+  </div>
+
+  <p class="runner-links">
+    <a class="back" href="snake.html">Snake</a>
+    ·
+    <a class="back" href="runner2.html">2 Spieler</a>
+    ·
+    <a class="back" href="index.html">Krone Spiel</a>
+  </p>
+  <script src="js/runner.js" defer></script>
+</body>
+</html>

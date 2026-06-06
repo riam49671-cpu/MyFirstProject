@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Sekunden-Split: Triff die grüne Zone auf 12 Uhr — eigenes Timing-Spiel." />
+  <meta name="theme-color" content="#0a0a12" />
+  <title>Sekunden-Split – Timing</title>
+  <link rel="stylesheet" href="css/sekunden-split.css" />
+</head>
+<body>
+  <header>
+    <h1>Sekunden-Split</h1>
+    <p class="lead">
+      Ein erfundenes Mini-Spiel: Die <strong>violette Nadel</strong> läuft im Kreis.
+      Drück genau dann <kbd>Leertaste</kbd> oder <strong>klick ins Rund</strong>, wenn die Spitze durch die
+      <strong>grüne Zone bei 12&nbsp;Uhr</strong> fährt. Jedes Treffen erhöht Tempo und Schwierigkeit —
+      Combo gibt mehr Punkte. Daneben verlierst du die Runde.
+    </p>
+  </header>
+
+  <div class="hud">
+    <span>Punkte <strong id="score">0</strong></span>
+    <span>Treffer <strong id="round">0</strong></span>
+    <span>Best <strong id="best">0</strong></span>
+    <span class="combo" id="combo">—</span>
+  </div>
+
+  <div class="wrap">
+    <canvas id="feld" width="400" height="400" tabindex="0" aria-label="Sekunden-Split Kreis"></canvas>
+
+    <div id="layer-menu" class="ui-layer">
+      <div class="card">
+        <h2>Bereit?</h2>
+        <p>Grüner Sektor = gut. Zu früh oder zu spät = Ende.</p>
+        <button type="button" id="btn-start" class="btn">Start</button>
+      </div>
+    </div>
+
+    <div id="layer-over" class="ui-layer hidden">
+      <div class="card">
+        <h2>Daneben</h2>
+        <p>Ergebnis: <strong id="final-score">0</strong></p>
+        <button type="button" id="btn-again" class="btn">Nochmal</button>
+      </div>
+    </div>
+  </div>
+
+  <p class="hint"><kbd>Leertaste</kbd> · Klick · Combo für mehr Punkte</p>
+  <p class="links-bottom"><a href="index.html">← Übersicht</a> · <a href="kometen-korb.html">Kometen-Korb</a></p>
+
+  <script src="js/sekunden-split.js" defer></script>
+</body>
+</html>

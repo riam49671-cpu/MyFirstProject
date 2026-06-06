@@ -1,5 +1,7 @@
-.krone-spiel-server.pid
+.kamera-app-server.pid
+kamera-app-media/
 .korone-spiel-server.pid
 *.pid
+.krone-party-pids
 __pycache__/
 *.pyc

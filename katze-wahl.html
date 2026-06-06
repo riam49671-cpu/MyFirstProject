@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="20 Level: Gabelungen, Münzen, alle 5 Level Katzen-Essen — die Katze bewegt sich mit." />
+  <title>Katze – 20 Level</title>
+  <link rel="stylesheet" href="css/katze-wahl.css" />
+</head>
+<body>
+  <header>
+    <h1>Katze: 20 Level</h1>
+    <p>
+      Pro Level: erst <strong>Gabelungen</strong> — <strong>← → gedrückt halten</strong> oder <strong>Finger ziehen</strong>:
+      die Katze bewegt sich <strong>frei</strong> auf der Straße; an der gelben Linie zählt, ob du in der <strong>linken oder rechten Hälfte</strong> bist.
+      danach <strong>Münzen fangen</strong> (Katze mit ← → bewegen).
+      <strong>Alle 5 Level</strong> (5, 10, 15, 20) kommt extra <strong>Katzen-Essen</strong>: falsches Futter =
+      die Katze mag es nicht (kein Game Over), es passiert nur „nichts Gutes“ für die Stimmung.
+      Normale Gabelung falsch = weiterhin Game Over.
+    </p>
+  </header>
+
+  <div class="wrap">
+    <canvas id="game" width="720" height="520" aria-label="Katze Spiel"></canvas>
+    <div class="hud hud-main">
+      <span>Level <strong id="level-display">1</strong> / 20</span>
+      <span id="fork-display">Gabelungen: 0 / —</span>
+      <span id="coin-hud" class="hidden">Münzen: <strong id="coin-count">0</strong> / <span id="coin-need">0</span> · Zeit: <span id="coin-time">0</span>s</span>
+      <span id="mood-display" title="Stimmung der Katze">😺 ❤️ <span id="mood-hearts">5</span>/5</span>
+      <button type="button" id="btn-mute" class="btn-mute" title="Ton" aria-pressed="false">🔊</button>
+    </div>
+    <div class="hud-sub">
+      <span>Gabelungen gesamt: <strong id="score">0</strong></span>
+      <span id="best">Beste Level: —</span>
+    </div>
+    <p id="hint" class="hint-bar"></p>
+
+    <div id="food-bonus" class="food-bonus hidden" aria-live="polite">
+      <p class="food-bonus-title">Katzen-Essen · Level <span id="food-level-num">5</span></p>
+      <p class="food-bonus-hint">
+        Eines davon hat die Katze nicht gern — dann ist sie nur sauer, du kannst weiterspielen.
+      </p>
+      <div id="food-bonus-grid" class="food-bonus-grid"></div>
+    </div>
+
+    <div id="toast" class="toast hidden" role="status"></div>
+
+    <div id="menu" class="menu-panel">
+      <button type="button" id="btn-start" class="btn">Start · Level 1</button>
+    </div>
+  </div>
+
+  <div id="overlay" class="overlay hidden">
+    <div class="overlay-card">
+      <h2 id="overlay-title">Game Over</h2>
+      <p id="overlay-msg"></p>
+      <div class="btn-row">
+        <button type="button" id="btn-again" class="btn">Nochmal</button>
+      </div>
+    </div>
+  </div>
+
+  <p class="links-footer">
+    <a href="index.html">Krone Spiel</a>
+  </p>
+
+  <script src="js/katze-wahl.js" defer></script>
+</body>
+</html>

@@ -24,8 +24,11 @@ except ImportError:
 ARENA_W, ARENA_H = 960, 540
 PLAYER_R = 26
 SPEED = 220.0
+SPEED_AI = 170.0
 CROWN_SPEED = 198.0
-TAG_DIST = PLAYER_R * 2 + 4
+CROWN_SPEED_AI = 150.0
+TAG_RANGE = PLAYER_R * 2 + 14
+CROWN_PROTECT_MS = 5000.0
 OBSTACLES = [
     {"x": 100, "y": 70, "w": 130, "h": 36},
     {"x": 730, "y": 434, "w": 130, "h": 36},
@@ -109,10 +112,12 @@ class Game:
         self.end_at = 0.0
         self.running = False
         self.ai_angle = [random.random() * 6.28 for _ in range(TOTAL_PLAYERS)]
+        self.ai_flee_sm_valid = [False] * TOTAL_PLAYERS
         self.duration_ms = GAME_DURATION_MS
         self.lock = asyncio.Lock()
         self.clients: dict[Any, int] = {}
         self.game_over_sent = False
+        self.crown_protected_until = 0.0
 
     def reset(self) -> None:
         self.players = []
@@ -131,16 +136,61 @@ class Game:
                 }
             )
             self.ai_angle[i] = random.random() * 6.28
+        for i in range(TOTAL_PLAYERS):
+            self.ai_flee_sm_valid[i] = False
         self.crown_index = random.randint(0, TOTAL_PLAYERS - 1)
-        self.end_at = time.monotonic() * 1000 + self.duration_ms
+        now_ms = time.monotonic() * 1000
+        self.crown_protected_until = now_ms + CROWN_PROTECT_MS
+        self.end_at = now_ms + self.duration_ms
         self.running = True
         self.game_over_sent = False
 
-    def ai_velocity(self, i: int, now_ms: float) -> tuple[float, float]:
+    def ai_velocity(self, i: int, now_ms: float, dt: float) -> tuple[float, float]:
         p = self.players[i]
-        spd = CROWN_SPEED if i == self.crown_index else SPEED
+        if not p["human"] and i != self.crown_index:
+            self.ai_flee_sm_valid[i] = False
+        holder = self.players[self.crown_index]
+        spd = (CROWN_SPEED if holder["human"] else CROWN_SPEED_AI) if i == self.crown_index else (
+            SPEED if p["human"] else SPEED_AI
+        )
         if i == self.crown_index:
             bx, by = 0.0, 0.0
+            ai_crown = not p["human"]
+            if ai_crown:
+                best_j = -1
+                best_d = float("inf")
+                for j in range(TOTAL_PLAYERS):
+                    if j == i:
+                        continue
+                    q = self.players[j]
+                    d = math.hypot(p["x"] - q["x"], p["y"] - q["y"])
+                    if d < best_d:
+                        best_d = d
+                        best_j = j
+                if best_j >= 0:
+                    q = self.players[best_j]
+                    dx = p["x"] - q["x"]
+                    dy = p["y"] - q["y"]
+                    d = math.hypot(dx, dy) or 1.0
+                    pull = SPEED_AI * 1.2 / (d * d) * 800 * 0.48
+                    bx += (dx / d) * pull
+                    by += (dy / d) * pull
+                bx += (ARENA_W / 2 - p["x"]) * 0.00028
+                by += (ARENA_H / 2 - p["y"]) * 0.00028
+                ln = math.hypot(bx, by) or 1.0
+                rdx, rdy = bx / ln, by / ln
+                if not self.ai_flee_sm_valid[i]:
+                    self.ai_angle[i] = math.atan2(rdy, rdx)
+                    self.ai_flee_sm_valid[i] = True
+                else:
+                    smx = math.cos(self.ai_angle[i])
+                    smy = math.sin(self.ai_angle[i])
+                    k = 1.0 - math.exp(-5.0 * dt)
+                    smx += (rdx - smx) * k
+                    smy += (rdy - smy) * k
+                    self.ai_angle[i] = math.atan2(smy, smx)
+                c, s = math.cos(self.ai_angle[i]), math.sin(self.ai_angle[i])
+                return c * spd, s * spd
             for j in range(TOTAL_PLAYERS):
                 if j == i:
                     continue
@@ -148,34 +198,38 @@ class Game:
                 dx = p["x"] - q["x"]
                 dy = p["y"] - q["y"]
                 d = math.hypot(dx, dy) or 1.0
-                pull = SPEED * 1.2 / (d * d) * 800
+                pull = SPEED_AI * 1.2 / (d * d) * 800
                 bx += (dx / d) * pull
                 by += (dy / d) * pull
             bx += (ARENA_W / 2 - p["x"]) * 0.0008
             by += (ARENA_H / 2 - p["y"]) * 0.0008
             self.ai_angle[i] += 0.05 + math.sin(now_ms * 0.002 + i) * 0.02
-            bx += math.cos(self.ai_angle[i]) * 0.35
-            by += math.sin(self.ai_angle[i]) * 0.35
+            wig = 0.35
+            bx += math.cos(self.ai_angle[i]) * wig
+            by += math.sin(self.ai_angle[i]) * wig
             ln = math.hypot(bx, by) or 1.0
             return (bx / ln) * spd, (by / ln) * spd
         tgt = self.players[self.crown_index]
         dx = tgt["x"] - p["x"]
         dy = tgt["y"] - p["y"]
         ln = math.hypot(dx, dy) or 1.0
-        return (dx / ln) * SPEED, (dy / ln) * SPEED
+        return (dx / ln) * SPEED_AI, (dy / ln) * SPEED_AI
 
     def tick(self, dt: float, now_ms: float) -> None:
         if not self.running:
             return
         for i in range(TOTAL_PLAYERS):
             p = self.players[i]
-            spd = CROWN_SPEED if i == self.crown_index else SPEED
+            holder = self.players[self.crown_index]
+            spd = (CROWN_SPEED if holder["human"] else CROWN_SPEED_AI) if i == self.crown_index else (
+                SPEED if p["human"] else SPEED_AI
+            )
             if p["human"]:
                 inp = self.inputs[i]
                 vx = inp["dx"] * spd
                 vy = inp["dy"] * spd
             else:
-                vx, vy = self.ai_velocity(i, now_ms)
+                vx, vy = self.ai_velocity(i, now_ms, dt)
             if abs(vx) > 2:
                 p["faceDir"] = 1.0 if vx > 0 else -1.0
             p["bob"] += dt * 12
@@ -185,15 +239,25 @@ class Game:
             p["y"] = clamp(p["y"], PLAYER_R, ARENA_H - PLAYER_R)
             p["x"], p["y"] = circle_obstacle_resolve(p["x"], p["y"])
 
-        # Spieler–Spieler
+        # Spieler–Spieler: zuerst Krone (größerer Abstand), dann Körper trennen
         for i in range(TOTAL_PLAYERS):
             for j in range(i + 1, TOTAL_PLAYERS):
                 a, b = self.players[i], self.players[j]
                 dx = b["x"] - a["x"]
                 dy = b["y"] - a["y"]
                 dist = math.hypot(dx, dy)
+                if dist < 1e-6:
+                    continue
+                if dist < TAG_RANGE:
+                    if now_ms >= self.crown_protected_until:
+                        if i == self.crown_index and j != self.crown_index:
+                            self.crown_index = j
+                            self.crown_protected_until = now_ms + CROWN_PROTECT_MS
+                        elif j == self.crown_index and i != self.crown_index:
+                            self.crown_index = i
+                            self.crown_protected_until = now_ms + CROWN_PROTECT_MS
                 mn = PLAYER_R * 2
-                if dist < mn and dist > 0:
+                if dist < mn:
                     push = (mn - dist) / 2
                     nx, ny = dx / dist, dy / dist
                     a["x"] -= nx * push
@@ -206,11 +270,6 @@ class Game:
                     b["y"] = clamp(b["y"], PLAYER_R, ARENA_H - PLAYER_R)
                     a["x"], a["y"] = circle_obstacle_resolve(a["x"], a["y"])
                     b["x"], b["y"] = circle_obstacle_resolve(b["x"], b["y"])
-                    if dist < TAG_DIST:
-                        if i == self.crown_index and j != self.crown_index:
-                            self.crown_index = j
-                        elif j == self.crown_index and i != self.crown_index:
-                            self.crown_index = i
 
         now_real = time.monotonic() * 1000
         if now_real >= self.end_at:
@@ -219,10 +278,12 @@ class Game:
     def state_json(self) -> dict[str, Any]:
         now_real = time.monotonic() * 1000
         left = max(0, int(self.end_at - now_real))
+        protect_left = max(0, int(self.crown_protected_until - now_real))
         return {
             "type": "state",
             "crownIndex": self.crown_index,
             "timeLeftMs": left,
+            "crownProtectLeftMs": protect_left,
             "running": self.running,
             "players": [
                 {

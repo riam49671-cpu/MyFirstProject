@@ -11,7 +11,8 @@ deinem PC. Kurz die Schritte:
    - Oder: Netlify / Cloudflare Pages – Ordner hochladen, Domain notieren.
 
 2) Platzhalter in diesem Projekt ersetzen
-   - In sitemap.xml: <loc> auf deine echte https-Adresse setzen (mit / am Ende).
+   - In sitemap.xml: alle <loc>-Einträge (Startseite, krokodil, snake, runner, runner2)
+     auf dieselbe echte https-Basisadresse setzen – nur den Platzhalter ersetzen.
    - In robots.txt: Zeile „Sitemap:“ auf dieselbe Domain + /sitemap.xml.
 
 3) Google informieren

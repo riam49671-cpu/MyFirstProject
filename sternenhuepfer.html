@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Sternenhüpfer: Springen, Sterne sammeln, zum Portal – eigenes Browser-Spiel." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0f172a" />
+  <title>Sternenhüpfer – Krone Spiel</title>
+  <link rel="stylesheet" href="css/sternenhuepfer.css" />
+</head>
+<body>
+  <header>
+    <h1>Sternenhüpfer</h1>
+    <p>
+      <strong>10 Level</strong> – jedes wird schwerer (engere Stege, schnellere Blobs, mehr Sterne).
+      Sterne sammeln, <strong>Portal</strong> erreichen, dann <strong>Weiter</strong>.
+      <strong>A/D</strong> oder Pfeile, <strong>W</strong> / Leertaste / <strong>↑</strong>, <strong>Shift/X</strong> sprinten.
+    </p>
+  </header>
+
+  <div class="wrap">
+    <div class="sh-status" aria-hidden="true">
+      <span>Level <strong id="level-num">1/10</strong></span>
+      <span>Punkte <strong id="score">00000</strong></span>
+      <span>Sterne <strong id="stars-count">0/4</strong></span>
+    </div>
+    <div class="sh-view">
+      <canvas id="game" width="960" height="540" aria-label="Sternenhüpfer"></canvas>
+      <button type="button" id="btn-mute" class="btn-mute" title="Musik &amp; Sounds" aria-pressed="false">🔊</button>
+      <div id="menu" class="ui-layer interactive">
+        <div class="card">
+          <h2>Bereit?</h2>
+          <p>10 Level, steigender Schwierigkeitsgrad. Musik mit Start.</p>
+          <button type="button" id="btn-start" class="btn">Start</button>
+        </div>
+      </div>
+      <div id="overlay" class="ui-layer interactive hidden">
+        <div class="card">
+          <h2 id="overlay-title">Geschafft!</h2>
+          <p id="overlay-msg"></p>
+          <button type="button" id="btn-continue" class="btn hidden">Weiter</button>
+          <button type="button" id="btn-again" class="btn">Nochmal von Level 1</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="sh-links">
+    <a href="index.html">← Krone Spiel</a>
+    ·
+    <a href="runner.html">Neon-Sprinter</a>
+  </p>
+  <script src="js/sternenhuepfer.js" defer></script>
+</body>
+</html>

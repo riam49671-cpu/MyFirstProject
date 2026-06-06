@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Hühner, Fuchs & Bauer: Party-Spiel für 20 Personen — 18 Hühner, ein Fuchs, ein Bauer. Pass das Handy weiter."
+  />
+  <meta name="theme-color" content="#1a1520" />
+  <title>Hühner, Fuchs &amp; Bauer — Party-Spiel (20)</title>
+  <link rel="stylesheet" href="css/huehner-fuchs-bauer.css" />
+</head>
+<body>
+  <header>
+    <h1>Hühner, Fuchs &amp; Bauer</h1>
+    <p class="lead">
+      <strong>20 Spieler:</strong> 18 Hühner, <strong>1 Fuchs</strong>, <strong>1 Bauer</strong>.
+      Jeder bekommt eine Nummer (1–20). Am besten <strong>das Handy weiterreichen</strong> — nur du schaust auf deine Rolle.
+    </p>
+    <ul class="rules">
+      <li><strong>Start:</strong> Der <strong>Bauer geht nach draußen</strong> (z. B. vor die Tür) und wartet dort, bis die anderen fertig sind.</li>
+      <li><strong>Dann</strong> (ohne Bauer): Ihr <strong>wählt gemeinsam</strong>, welche <strong>Nummer der Fuchs</strong> ist. Der <strong>Bauer</strong> wird danach <strong>per Zufall</strong> unter den anderen 19 vergeben — niemand weiß vorher, wer Bauer ist.</li>
+      <li><strong>Alle bewegen sich</strong> im Raum (laufen, laufen lassen) — auch Fuchs und „verdeckte“ Rollen, damit der Bauer nichts erraten kann.</li>
+      <li><strong>Huhn:</strong> Alle Hühner <strong>wissen</strong>, wer Fuchs und wer Bauer ist.</li>
+      <li><strong>Fuchs:</strong> Hühner <strong>berühren</strong> (antippen) — getroffene Hühner <strong>sitzen</strong>. Gewinnt der Fuchs, wenn <strong>alle 18 Hühner sitzen</strong>.</li>
+      <li><strong>Bauer:</strong> Kommt rein, hat <strong>drei Schüsse</strong>, kennt <strong>niemanden</strong> — trifft er den Fuchs, hat der <strong>Bauer gewonnen</strong>.</li>
+    </ul>
+  </header>
+
+  <section id="panel-setup-wait" class="panel panel-setup">
+    <h2 class="panel-title">1. Bauer wartet draußen</h2>
+    <p class="hint">
+      Der oder die <strong>Bauer*in</strong> verlässt den Raum und wartet <strong>vor der Tür / draußen</strong>.
+      Erst wenn niemand mehr hinschauen kann, was ihr hier macht, geht es weiter.
+    </p>
+    <button type="button" id="btn-farmer-outside" class="btn-primary wide">Bauer ist draußen — weiter</button>
+  </section>
+
+  <section id="panel-setup-fox" class="panel panel-setup hidden">
+    <h2 class="panel-title">2. Fuchs wählen (ohne Bauer)</h2>
+    <p class="hint">
+      Gemeinsam entscheiden: <strong>Welche Nummer (1–20) ist der Fuchs?</strong>
+      Der Bauer wird <strong>automatisch zufällig</strong> unter den <strong>anderen 19</strong> vergeben — der Fuchs erfährt danach im Spiel die Bauer-Nummer.
+    </p>
+    <div class="row-inline">
+      <label for="inp-pick-fox">Fuchs-Nummer</label>
+      <input type="number" id="inp-pick-fox" min="1" max="20" step="1" inputmode="numeric" placeholder="1–20" />
+      <button type="button" id="btn-pick-fox" class="btn-primary">Fuchs ist fest — Spiel starten</button>
+    </div>
+    <p id="pick-fox-msg" class="msg" aria-live="polite"></p>
+  </section>
+
+  <section class="panel move-banner hidden" id="panel-move">
+    <p class="move-text">
+      <strong>Alle bewegen sich</strong> im Raum — herumlaufen, nicht stehen bleiben (auch wenn du Fuchs oder „verdeckt“ bist), bis der Bauer hereinkommt und schießt bzw. das Spiel endet.
+    </p>
+  </section>
+
+  <section class="panel status-bar hidden" id="status-bar">
+    <span>Hühner sitzend: <strong id="stat-sitting">0</strong> / 18</span>
+    <span>Bauer-Schüsse: <strong id="stat-shots">0</strong> / 3</span>
+    <button type="button" id="btn-new-game" class="btn-secondary">Neues Spiel</button>
+  </section>
+
+  <section class="panel hidden" id="panel-field-wrap">
+    <h2 class="panel-title">Spielfeld</h2>
+    <p class="hint">Öffentlich: Nummern und wer <strong>sitzt</strong>. <strong>Wer Fuchs oder Bauer ist</strong>, sieht man hier nicht.</p>
+    <div id="field" class="field" aria-label="20 Spieler"></div>
+  </section>
+
+  <section class="panel hidden" id="panel-roles-wrap">
+    <h2 class="panel-title">Nur für dich: Rolle ansehen</h2>
+    <p class="hint">Deine Nummer eingeben (1–20), kurz ansehen, dann wieder weggeben.</p>
+    <div class="row-inline">
+      <label for="inp-my-num">Meine Nummer</label>
+      <input type="number" id="inp-my-num" min="1" max="20" step="1" inputmode="numeric" placeholder="1–20" />
+      <button type="button" id="btn-show-role" class="btn-primary">Rolle anzeigen</button>
+    </div>
+  </section>
+
+  <section class="panel hidden" id="panel-fox-wrap">
+    <h2 class="panel-title">Fuchs: Hühner berühren</h2>
+    <p class="hint">Zuerst mit deiner Nummer anmelden — nur der echte Fuchs sieht dann die Berühr-Buttons.</p>
+    <div class="row-inline">
+      <label for="inp-fox-num">Fuchs-Nummer</label>
+      <input type="number" id="inp-fox-num" min="1" max="20" step="1" inputmode="numeric" />
+      <button type="button" id="btn-fox-login" class="btn-primary">Als Fuchs</button>
+    </div>
+    <p id="fox-msg" class="msg" aria-live="polite"></p>
+  </section>
+
+  <section class="panel hidden" id="panel-farmer-wrap">
+    <h2 class="panel-title">Bauer: drei Schüsse</h2>
+    <p class="hint">Mit deiner Nummer anmelden — dann eine Nummer schießen (du weißt nicht, wer wer ist).</p>
+    <div class="row-inline">
+      <label for="inp-farmer-num">Bauer-Nummer</label>
+      <input type="number" id="inp-farmer-num" min="1" max="20" step="1" inputmode="numeric" />
+      <button type="button" id="btn-farmer-login" class="btn-primary">Als Bauer</button>
+    </div>
+    <p id="farmer-msg" class="msg" aria-live="polite"></p>
+  </section>
+
+  <div id="overlay-role" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="role-title">
+    <div class="overlay-card">
+      <h2 id="role-title">Deine Rolle</h2>
+      <div id="role-body"></div>
+      <button type="button" id="btn-close-role" class="btn-primary wide">Verstanden — schließen</button>
+    </div>
+  </div>
+
+  <div id="overlay-end" class="overlay hidden" role="dialog" aria-modal="true">
+    <div class="overlay-card">
+      <h2 id="end-title">Spielende</h2>
+      <p id="end-msg"></p>
+      <button type="button" id="btn-end-ok" class="btn-primary wide">OK</button>
+    </div>
+  </div>
+
+  <p class="links-bottom"><a href="index.html">← Krone Spiel &amp; Übersicht</a></p>
+
+  <script src="js/huehner-fuchs-bauer.js" defer></script>
+</body>
+</html>

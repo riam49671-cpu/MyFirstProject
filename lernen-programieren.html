@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Lernen Programieren — Roboter steuern, Code-Bausteine legen, Level meistern. Spielerisch Programmieren lernen im Browser."
+  />
+  <meta name="theme-color" content="#0a0e17" />
+  <title>Lernen Programieren — Code-Roboter</title>
+  <link rel="stylesheet" href="css/lernen-programieren.css" />
+</head>
+<body>
+  <header>
+    <h1>Lernen Programieren</h1>
+    <p class="lead">
+      Steuere den <strong>Code-Roboter</strong> <span id="player-name-label">Cool</span> durch Level —
+      lege Bausteine, drücke <strong>Start</strong> und sieh live, was dein Programm macht.
+      Sammle <strong>Sterne</strong>, XP und lerne Schleifen, Variablen &amp; mehr.
+    </p>
+  </header>
+
+  <div class="hud-global hidden" id="hud-global">
+    <span class="hud-xp">XP <strong id="hud-xp">0</strong></span>
+    <span class="hud-rank" id="hud-rank">Anfänger</span>
+    <span class="hud-stars">⭐ <strong id="hud-stars">0</strong></span>
+  </div>
+
+  <section id="screen-start" class="panel">
+    <div class="hero-wrap">
+      <canvas id="hero-canvas" width="640" height="200" aria-hidden="true"></canvas>
+    </div>
+    <label class="row">
+      Dein Name
+      <input type="text" id="input-name" value="Cool" maxlength="24" autocomplete="nickname" />
+    </label>
+    <button type="button" id="btn-start" class="btn-primary wide">Spiel starten</button>
+  </section>
+
+  <section id="screen-menu" class="panel hidden">
+    <h2 class="panel-title">Hauptmenü</h2>
+    <div class="menu-grid">
+      <button type="button" class="menu-card menu-card-featured" data-mode="adventure">
+        <span class="menu-icon" aria-hidden="true">🤖</span>
+        <strong>Code-Abenteuer</strong>
+        <span class="muted">10 Level · Roboter programmieren</span>
+      </button>
+      <button type="button" class="menu-card" data-mode="quiz">
+        <span class="menu-icon" aria-hidden="true">📚</span>
+        <strong>Lern-Karten</strong>
+        <span class="muted">Quiz mit Mini-Demo</span>
+      </button>
+      <button type="button" class="menu-card" data-mode="camera">
+        <span class="menu-icon" aria-hidden="true">🤳</span>
+        <strong>Roboter-Gesicht</strong>
+        <span class="muted">Foto als Avatar</span>
+      </button>
+    </div>
+    <div class="progress-bar-wrap">
+      <div class="progress-bar" id="world-progress" style="width: 0%"></div>
+    </div>
+    <p class="progress-line">Welt-Fortschritt: <strong id="progress-text">0 / 10</strong> Level · <strong id="quiz-progress">0 / 8</strong> Karten</p>
+  </section>
+
+  <section id="screen-levels" class="panel hidden">
+    <div class="lesson-top">
+      <span class="badge">Level wählen</span>
+      <button type="button" id="btn-levels-back" class="btn-ghost">← Menü</button>
+    </div>
+    <div id="level-map" class="level-map"></div>
+  </section>
+
+  <section id="screen-adventure" class="panel hidden">
+    <div class="lesson-top">
+      <span id="level-badge" class="badge">Level 1</span>
+      <button type="button" id="btn-adv-back" class="btn-ghost">← Level</button>
+    </div>
+    <p id="level-story" class="level-story"></p>
+    <div class="game-layout">
+      <div class="game-board-wrap">
+        <canvas id="game-canvas" width="400" height="400" aria-label="Roboter-Feld"></canvas>
+        <div id="run-overlay" class="run-overlay hidden">Programm läuft …</div>
+      </div>
+      <div class="game-side">
+        <p class="side-label">Bausteine — klicken zum Hinzufügen</p>
+        <div id="block-palette" class="block-palette"></div>
+        <p class="side-label">Dein Programm <span class="muted">(Klick = entfernen)</span></p>
+        <div id="program-strip" class="program-strip empty">
+          <span class="program-placeholder">Bausteine hierher …</span>
+        </div>
+        <div class="action-row">
+          <button type="button" id="btn-run" class="btn-primary">▶ Start</button>
+          <button type="button" id="btn-reset-prog" class="btn-ghost">Leeren</button>
+          <button type="button" id="btn-hint" class="btn-ghost">💡 Tipp</button>
+        </div>
+        <p id="game-message" class="game-message" aria-live="polite"></p>
+      </div>
+    </div>
+    <div id="level-complete" class="level-complete hidden">
+      <h3>Level geschafft!</h3>
+      <div id="star-row" class="star-row" aria-label="Sterne">☆☆☆</div>
+      <p id="complete-text"></p>
+      <button type="button" id="btn-next-level" class="btn-primary">Nächstes Level</button>
+      <button type="button" id="btn-retry" class="btn-ghost">Nochmal</button>
+    </div>
+  </section>
+
+  <section id="screen-quiz" class="panel hidden">
+    <div class="lesson-top">
+      <span id="quiz-badge" class="badge">Karte 1</span>
+      <button type="button" id="btn-quiz-back" class="btn-ghost">← Menü</button>
+    </div>
+    <div class="quiz-layout">
+      <canvas id="quiz-demo" width="280" height="200" aria-label="Mini-Demo"></canvas>
+      <div class="quiz-text">
+        <h3 id="quiz-title"></h3>
+        <p id="quiz-caption" class="muted"></p>
+        <p id="quiz-question" class="question"></p>
+        <div id="quiz-choices" class="choices"></div>
+        <p id="quiz-feedback" class="feedback hidden" aria-live="polite"></p>
+        <button type="button" id="btn-quiz-next" class="btn-primary wide hidden">Weiter</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="screen-camera" class="panel hidden">
+    <div class="lesson-top">
+      <span class="badge">Roboter-Gesicht</span>
+      <button type="button" id="btn-camera-back" class="btn-ghost">← Menü</button>
+    </div>
+    <p class="muted small">Dein Foto wird zum Gesicht des Code-Roboters auf dem Spielfeld.</p>
+    <div class="camera-wrap">
+      <video id="camera-video" class="camera-video hidden" autoplay playsinline muted></video>
+      <canvas id="camera-canvas" class="camera-canvas hidden" width="320" height="240"></canvas>
+      <img id="camera-preview" class="camera-preview hidden" alt="Dein Foto" />
+      <div id="camera-placeholder" class="camera-placeholder">🤖</div>
+    </div>
+    <div class="camera-actions">
+      <button type="button" id="btn-camera-open" class="btn-primary">Kamera</button>
+      <button type="button" id="btn-camera-snap" class="btn-primary hidden">Foto</button>
+      <label class="btn-ghost file-label">
+        Bild wählen
+        <input type="file" id="input-file" accept="image/*" hidden />
+      </label>
+      <button type="button" id="btn-camera-use" class="btn-primary hidden">Speichern</button>
+    </div>
+  </section>
+
+  <p class="links-bottom">
+    <a href="index.html">← Übersicht</a> ·
+    <code>./sofort-lernen-programieren.sh</code>
+  </p>
+
+  <script src="js/lernen-programieren.js" defer></script>
+</body>
+</html>

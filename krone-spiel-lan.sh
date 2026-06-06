@@ -35,8 +35,8 @@ else
   echo "Diese Zeile auf dem Handy/anderen PC im Browser einfügen."
 fi
 echo ""
-echo "Hinweis: Jeder spielt auf seinem Gerät eine eigene Runde –"
-echo "nicht dieselbe Partie über zwei Computer (dafür bräuchte man Online-Modus)."
+echo "Gemeinsame EINE Partie mit anderen PCs: ./start-online-party.sh"
+echo "(Web + Online-Server; dieselbe http- und ws-Adresse für alle)."
 echo ""
 
 URL="http://127.0.0.1:$PORT/index.html"

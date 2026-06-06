@@ -1,0 +1,14 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Kamera-App
+GenericName=Kamera
+Comment=Foto, Video & Galerie — startet in Chrome
+Exec=/bin/bash "__PROJECT_DIR__/sofort-kamera-app.sh"
+Path=__PROJECT_DIR__
+Icon=camera-photo
+Terminal=false
+Categories=AudioVideo;Photography;Utility;
+Keywords=kamera;foto;video;qr;scan;
+StartupNotify=true
+NoDisplay=false

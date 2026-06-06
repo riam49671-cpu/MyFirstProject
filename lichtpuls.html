@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Lichtpuls: Schatten abwehren mit einem Klick-Puls — eigenes Browser-Mini-Spiel."
+  />
+  <meta name="theme-color" content="#060814" />
+  <title>Lichtpuls — Schatten abwehren</title>
+  <link rel="stylesheet" href="css/lichtpuls.css" />
+</head>
+<body>
+  <header>
+    <h1>Lichtpuls</h1>
+    <p class="lead">
+      <strong>Idee:</strong> In der Mitte sitzt dein Lichtkern. Violette Schatten schwärmen von außen her —
+      wenn sie dich berühren, ist Schluss. <strong>Klick</strong>, <strong>Tipp</strong> oder <kbd>Leertaste</kbd> sendet einen
+      <strong>Lichtpuls</strong> (Ring), der nahe Schatten zerstört. Je mehr du in Folge triffst, desto mehr Punkte.
+      Es wird mit der Zeit dichter.
+    </p>
+  </header>
+
+  <div class="hud">
+    <span>Punkte <strong id="score">0</strong></span>
+    <span>Welle <strong id="wave">1</strong></span>
+    <span>Combo <strong id="combo">—</strong></span>
+  </div>
+
+  <div class="wrap">
+    <canvas id="feld" width="720" height="480" aria-label="Lichtpuls Spielfeld"></canvas>
+    <div id="menu" class="ui-layer">
+      <div class="card">
+        <h2>Lichtpuls</h2>
+        <p>Klicke ins Feld oder Leertaste zum Pulsen. Halte die Schatten fern.</p>
+        <button type="button" id="btn-start" class="btn">Start</button>
+      </div>
+    </div>
+    <div id="overlay" class="ui-layer hidden">
+      <div class="card">
+        <h2>Kern berührt</h2>
+        <p id="over-msg">Punkte: 0</p>
+        <button type="button" id="btn-again" class="btn">Nochmal</button>
+      </div>
+    </div>
+  </div>
+
+  <p class="links-bottom">
+    <a href="index.html">← Krone Spiel &amp; Übersicht</a>
+  </p>
+
+  <script src="js/lichtpuls.js" defer></script>
+</body>
+</html>

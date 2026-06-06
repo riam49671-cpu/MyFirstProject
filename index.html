@@ -13,7 +13,7 @@
     content="Krone Spiel, Krone fangen, Browser-Spiel, Party-Spiel, Multiplayer, kostenlos"
   />
   <meta name="robots" content="index, follow" />
-  <meta name="theme-color" content="#0f1419" />
+  <meta name="theme-color" content="#15803d" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Krone Spiel – Krone fangen" />
   <meta
@@ -65,21 +65,7 @@
     </div>
     <div id="panel-local">
       <div class="menu-row">
-        <label for="total">Wie viele Personen?</label>
-        <select id="total">
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4" selected>4</option>
-        </select>
-      </div>
-      <div class="menu-row menu-checkbox">
-        <label class="checkbox-label" for="use-bots">
-          <input type="checkbox" id="use-bots" checked />
-          Mit Roboter (Computer-Gegner)
-        </label>
-      </div>
-      <div class="menu-row" id="row-humans">
-        <label for="humans">Echte Spieler an der Tastatur</label>
+        <label for="humans">Echte Personen (Tastatur)</label>
         <select id="humans">
           <option value="1">1</option>
           <option value="2" selected>2</option>
@@ -87,21 +73,48 @@
           <option value="4">4</option>
         </select>
       </div>
+      <div class="menu-row" id="row-humans">
+        <label for="computers">Computer (KI)</label>
+        <select id="computers">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2" selected>2</option>
+          <option value="3">3</option>
+        </select>
+      </div>
+      <p class="menu-row menu-summary">
+        <span>Spieler insgesamt: <strong id="total-display">4</strong></span>
+        <label for="total" class="sr-only">Kurz wählen: Anzahl</label>
+        <select id="total" class="select-compact" title="Schnell: 2, 3 oder 4 Spieler">
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4" selected>4</option>
+        </select>
+      </p>
       <p id="hint-humans-only" class="menu-hint hidden">
-        Alle Plätze sind Menschen – jeder braucht eine Tastenreihe (siehe unten).
+        Nur echte Spieler: jeder braucht eine Tastenreihe (siehe unten). Mindestens 2 Personen.
       </p>
     </div>
     <div id="panel-online" class="hidden">
       <p class="menu-hint online-hint">
-        Der Host startet auf seinem PC:
+        <strong>Host (ein PC):</strong> Im Projektordner
+        <code>./start-online-party.sh</code>
+        ausführen – dann erscheinen die genauen Links im Terminal. Oder manuell:
         <code>python3 server/krone_server.py</code>
-        Dann hier die Adresse eintragen (z. B. <code>ws://192.168.1.5:8770</code>).
-        Alle öffnen dieselbe Webseite und wählen Online – bis zu 4 Spieler.
+        und die Webseite über Port 8765.
       </p>
+      <div class="menu-row menu-row-block">
+        <label for="share-page-url">Dieselbe Seite für alle (kopieren)</label>
+        <input type="text" id="share-page-url" class="input-url" readonly spellcheck="false" title="Diese Adresse auf anderen PCs im Browser öffnen" />
+      </div>
       <div class="menu-row">
         <label for="ws-url">Server (WebSocket)</label>
         <input type="text" id="ws-url" class="input-url" placeholder="ws://127.0.0.1:8770" spellcheck="false" />
       </div>
+      <p id="online-file-hint" class="menu-hint hidden">
+        Du hast die Datei direkt geöffnet (<code>file://</code>). Für andere Computer der Host startet
+        <code>./start-online-party.sh</code> und alle nutzen die <strong>http://…</strong>-Adresse aus dem Terminal.
+      </p>
     </div>
     <p class="controls-hint">
       Steuerung: Spieler 1 <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> ·
@@ -109,11 +122,59 @@
       Spieler 4 <kbd>T</kbd><kbd>F</kbd><kbd>G</kbd><kbd>H</kbd>
     </p>
     <button type="button" id="btn-start" class="btn primary">Spiel starten</button>
+    <p class="menu-hint">
+      Extra: <a href="krokodil.html">Krokodil (2 Spieler)</a> ·
+      <a href="snake1p.html">Snake 1P</a> ·
+      <a href="snake.html">Snake 2P</a> ·
+      <a href="runner.html">Neon-Sprinter</a> ·
+      <a href="katze-wahl.html">Katze links/rechts</a> ·
+      <a href="runner2.html">2 Spieler</a> ·
+      <a href="sternenhuepfer.html">Sternenhüpfer</a> ·
+      <a href="offline-dino.html">Offline-Rex</a> ·
+      <a href="tetris.html">Tetris</a> ·
+      <a href="buch-raten.html">Buch raten</a> ·
+      <a href="lumen-arena.html">Lumen-Arena</a> ·
+      <a href="regenbogen-spiel.html">Regenbogen-Spiel</a> ·
+      <a href="lichtpuls.html">Lichtpuls</a> ·
+      <a href="echo-ringe.html">Echo-Ringe</a> ·
+      <a href="schatz-labyrinth.html">Schatz-Labyrinth</a> ·
+      <a href="kometen-korb.html">Kometen-Korb</a> ·
+      <a href="sekunden-split.html">Sekunden-Split</a> ·
+      <a href="wer-ist-was.html">Wer ist was</a> ·
+      <a href="gesichts-studio.html">Gesichts-Studio</a> ·
+      <a href="kamera-app.html">Kamera-App</a> ·
+      <a href="lernen-programieren.html">Lernen Programieren</a> ·
+      <a href="simon-says.html">Simon Says</a>
+      <br />
+      <strong>Chrome + Musik:</strong> <code>./chrome-mit-musik.sh</code> — oder anderes Skript; im Browser <strong>Spiel starten</strong> / <strong>Los</strong> (Chrome braucht einen Klick für Ton).<br />
+      Chrome sofort:
+      <code>./chrome-mit-musik.sh</code> ·
+      <code>./sofort-chrome.sh</code> (Krone-Menü) ·
+      <code>./sofort-runner-chrome.sh</code> (Neon-Sprinter + Musik) ·
+      <code>./sofort-katze-wahl-chrome.sh</code> (Katze links/rechts) ·
+      <code>./sofort-sternenhuepfer.sh</code> ·
+      <code>./open-chrome.sh</code> · <code>./start-snake-chrome.sh</code> ·
+      <code>./start-runner-chrome.sh runner2.html</code> ·
+      <code>./open-chrome.sh offline-dino.html</code> ·
+      <code>./open-chrome.sh tetris.html</code> ·
+      <code>./sofort-buch-raten-chrome.sh</code> ·
+      <code>./open-chrome.sh lumen-arena.html</code> ·
+      <code>./sofort-lumen-arena-chrome.sh</code> ·
+      <code>./sofort-lernen-programieren.sh</code> ·
+      <code>./sofort-simon-says.sh</code> ·
+      <code>./sofort-kamera-app.sh</code>
+    </p>
   </div>
 
   <div id="hud" class="hud hidden">
     <div class="hud-timer" id="timer">2:00</div>
-    <div class="hud-crown" id="crown-hud">Krone: —</div>
+    <div class="hud-mid">
+      <div class="hud-crown" id="crown-hud">Krone: —</div>
+      <div class="hud-protect hidden" id="crown-protect" aria-live="polite"></div>
+    </div>
+    <button type="button" id="btn-mute" class="btn-mute" title="Musik & Sounds aus/an" aria-pressed="false">
+      🔊
+    </button>
   </div>
 
   <div id="overlay" class="overlay hidden">
@@ -126,6 +187,7 @@
 
   <canvas id="game" width="960" height="540"></canvas>
 
+  <script src="js/audio.js" defer></script>
   <script src="js/game.js" defer></script>
 </body>
 </html>
