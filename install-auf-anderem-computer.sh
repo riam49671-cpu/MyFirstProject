@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Auf einem ANDEREN Linux-Computer einmal ausführen (nach git clone).
-# Legt Lego-Stapel (und optional Kamera-App) ins Anwendungsmenü.
+# Legt Lego Games (und optional Kamera-App) ins Anwendungsmenü.
 set -e
 DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$DIR"
@@ -34,6 +34,6 @@ PAGES_URL="https://riam49671-cpu.github.io/MyFirstProject/lego-spiel.html"
 
 echo "" >&2
 echo "Fertig!" >&2
-echo "  • Anwendungsmenü → „Lego-Stapel“ suchen und starten" >&2
+echo "  • Anwendungsmenü → „Lego Games“ suchen und starten" >&2
 echo "  • Oder im Browser (ohne Menü): $PAGES_URL" >&2
 echo "" >&2

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Lego-Stapel — lokaler Server + Chrome (Flatpak kann kein file:// aus dem Ordner).
+# Lego Games — lokaler Server + Chrome (Flatpak kann kein file:// aus dem Ordner).
 set -e
 PORT=8774
 DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -38,6 +38,6 @@ if ! port_open; then
   done
 fi
 
-echo "Lego-Stapel startet …" >&2
+echo "Lego Games startet …" >&2
 URL="http://127.0.0.1:$PORT/lego-spiel.html"
 open_chrome "$URL"

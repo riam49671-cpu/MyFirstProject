@@ -1,4 +1,4 @@
-So nutzen ANDERE PERSONEN Lego-Stapel auf ihrem Computer
+So nutzen ANDERE PERSONEN Lego Games auf ihrem Computer
 =======================================================
 
 Dein Projekt auf GitHub:
@@ -24,7 +24,7 @@ Auf Linux im Anwendungsmenü (wie bei dir)
      chmod +x install-auf-anderem-computer.sh
      ./install-auf-anderem-computer.sh
 
-4) Im Menü nach „Lego-Stapel“ suchen und starten.
+4) Im Menü nach „Lego Games“ suchen und starten.
 
    Chrome oder Chromium sollte installiert sein (Flatpak-Chrome geht auch).
 

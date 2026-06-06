@@ -1,14 +1,14 @@
 [Desktop Entry]
 Version=1.0
 Type=Application
-Name=Lego-Stapel
-GenericName=Lego stapeln
+Name=Lego Games
+GenericName=Lego-Spiel
 Comment=Lego-Steine stapeln und bauen — Häuser, Türme, alles!
 Exec=/bin/bash "__PROJECT_DIR__/sofort-lego-spiel.sh"
 Path=__PROJECT_DIR__
 Icon=applications-games
 Terminal=false
 Categories=Game;KidsGame;
-Keywords=lego;stapel;spiel;bausteine;
+Keywords=lego;games;spiel;bausteine;
 StartupNotify=true
 NoDisplay=false

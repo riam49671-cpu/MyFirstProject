@@ -7,4 +7,4 @@ DIR="$(cd "$(dirname "$0")" && pwd)"
 chmod +x "$DIR/kamera-app-fenster.py" "$DIR/sofort-kamera-app.sh" "$DIR/kamera-app-stop.sh"
 chmod +x "$DIR/sofort-lego-spiel.sh"
 "$DIR/applikationen-aktualisieren.sh"
-echo "Fertig! Im Menü: „Kamera-App“ und „Lego-Stapel“." >&2
+echo "Fertig! Im Menü: „Kamera-App“ und „Lego Games“." >&2

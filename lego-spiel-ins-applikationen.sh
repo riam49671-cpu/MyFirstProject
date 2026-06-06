@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Legt „Lego-Stapel“ fest ins Linux-Anwendungsmenü (Activities / App-Übersicht).
+# Legt „Lego Games“ fest ins Linux-Anwendungsmenü (Activities / App-Übersicht).
 set -e
 DIR="$(cd "$(dirname "$0")" && pwd)"
 DEST="$HOME/.local/share/applications/lego-spiel.desktop"
@@ -17,4 +17,4 @@ if command -v update-desktop-database >/dev/null 2>&1; then
   update-desktop-database "$HOME/.local/share/applications" 2>/dev/null || true
 fi
 
-echo "Lego-Stapel ist im Anwendungsmenü — suche nach „Lego-Stapel“." >&2
+echo "Lego Games ist im Anwendungsmenü — suche nach „Lego Games“." >&2
