@@ -38,6 +38,6 @@ if ! port_open; then
   done
 fi
 
-echo "Lego Games startet …" >&2
+echo "Viele Spiele startet …" >&2
 URL="http://127.0.0.1:$PORT/lego-spiel.html"
 open_chrome "$URL"

@@ -1,14 +1,14 @@
 [Desktop Entry]
 Version=1.0
 Type=Application
-Name=Lego Games
-GenericName=Lego-Spiel
-Comment=Lego-Steine stapeln und bauen — Häuser, Türme, alles!
+Name=Viele Spiele
+GenericName=Lego Games
+Comment=Lego Games — in Chrome & Menü nach „Viele Spiele“ suchen
 Exec=/bin/bash "__PROJECT_DIR__/sofort-lego-spiel.sh"
 Path=__PROJECT_DIR__
 Icon=applications-games
 Terminal=false
 Categories=Game;KidsGame;
-Keywords=lego;games;spiel;bausteine;
+Keywords=viele spiele;Viele Spiele;lego;games;Lego Games;
 StartupNotify=true
 NoDisplay=false

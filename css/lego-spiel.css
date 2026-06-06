@@ -46,6 +46,15 @@ header p {
   line-height: 1.45;
 }
 
+.chrome-hint {
+  margin-bottom: 0.5rem !important;
+  padding: 0.5rem 0.65rem;
+  border-radius: 8px;
+  background: rgba(22, 163, 74, 0.15);
+  border: 1px solid rgba(22, 163, 74, 0.35);
+  color: var(--ink) !important;
+}
+
 kbd {
   padding: 0.1rem 0.35rem;
   border-radius: 4px;
